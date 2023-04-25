@@ -1,0 +1,12 @@
+C:/Users/HP/OneDrive/Documents/GitHub/SUSL-LMS/build/windows/runner/Debug/data/icudtl.dat
+C:/Users/HP/OneDrive/Documents/GitHub/SUSL-LMS/build/windows/runner/Debug/flutter_windows.dll
+C:/Users/HP/OneDrive/Documents/GitHub/SUSL-LMS/build/windows/runner/Debug/data/flutter_assets/AssetManifest.json
+C:/Users/HP/OneDrive/Documents/GitHub/SUSL-LMS/build/windows/runner/Debug/data/flutter_assets/Assets/images/logo.png
+C:/Users/HP/OneDrive/Documents/GitHub/SUSL-LMS/build/windows/runner/Debug/data/flutter_assets/FontManifest.json
+C:/Users/HP/OneDrive/Documents/GitHub/SUSL-LMS/build/windows/runner/Debug/data/flutter_assets/fonts/MaterialIcons-Regular.otf
+C:/Users/HP/OneDrive/Documents/GitHub/SUSL-LMS/build/windows/runner/Debug/data/flutter_assets/fonts/OpenSans-Italic-VariableFont_wdth,wght.ttf
+C:/Users/HP/OneDrive/Documents/GitHub/SUSL-LMS/build/windows/runner/Debug/data/flutter_assets/fonts/OpenSans-VariableFont_wdth,wght.ttf
+C:/Users/HP/OneDrive/Documents/GitHub/SUSL-LMS/build/windows/runner/Debug/data/flutter_assets/kernel_blob.bin
+C:/Users/HP/OneDrive/Documents/GitHub/SUSL-LMS/build/windows/runner/Debug/data/flutter_assets/NOTICES.Z
+C:/Users/HP/OneDrive/Documents/GitHub/SUSL-LMS/build/windows/runner/Debug/data/flutter_assets/packages/cupertino_icons/assets/CupertinoIcons.ttf
+C:/Users/HP/OneDrive/Documents/GitHub/SUSL-LMS/build/windows/runner/Debug/data/flutter_assets/shaders/ink_sparkle.frag
