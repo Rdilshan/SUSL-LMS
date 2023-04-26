@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_5/homepage/homepage.dart';
 
 class Sign extends StatefulWidget {
   const Sign({super.key});
@@ -56,7 +57,7 @@ class _SignState extends State<Sign> {
                 ),
               ),
               ElevatedButton(
-                onPressed: null,
+                onPressed: () => navigateToHomepage(context, const homepage()),
                 style: ButtonStyle(
                   backgroundColor: MaterialStateProperty.all<Color>(
                       Color.fromARGB(255, 81, 24, 24)),
@@ -105,4 +106,11 @@ class _SignState extends State<Sign> {
       ),
     );
   }
+}
+
+void navigateToHomepage(BuildContext context, Widget homepageWidget) {
+  Navigator.push(
+    context,
+    MaterialPageRoute(builder: (context) => homepageWidget),
+  );
 }

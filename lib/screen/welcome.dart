@@ -10,9 +10,6 @@ class Welcome extends StatefulWidget {
 }
 
 class _WelcomeState extends State<Welcome> {
-
-
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -30,8 +27,6 @@ class _WelcomeState extends State<Welcome> {
               const SizedBox(
                 height: 10,
               ),
-
-
               const Text(
                 'LOGIN AS',
                 style: TextStyle(
@@ -40,12 +35,9 @@ class _WelcomeState extends State<Welcome> {
                   fontFamily: 'OpenSans',
                 ),
               ),
-              
               const SizedBox(
                 height: 5,
               ),
-
-
               ElevatedButton(
                 onPressed: () => navigateToSignup(context, const Sign()),
                 style: ButtonStyle(
@@ -54,7 +46,6 @@ class _WelcomeState extends State<Welcome> {
                   fixedSize:
                       MaterialStateProperty.all<Size>(const Size(250, 40)),
                 ),
-
                 child: const Text(
                   'I AM A STUDENT',
                   style: TextStyle(
@@ -65,13 +56,9 @@ class _WelcomeState extends State<Welcome> {
                   ),
                 ),
               ),
-
-
               const SizedBox(
                 height: 5,
               ),
-
-
               ElevatedButton(
                 onPressed: () => navigateToSignup(context, const Sign()),
                 style: ButtonStyle(
@@ -97,9 +84,6 @@ class _WelcomeState extends State<Welcome> {
     );
   }
 }
-
-
-
 
 void navigateToSignup(BuildContext context, Widget signupWidget) {
   Navigator.push(
