@@ -27,24 +27,16 @@ class _WelcomeState extends State<Welcome> {
               const SizedBox(
                 height: 10,
               ),
-              const Text(
-                'LOGIN AS',
-                style: TextStyle(
-                  color: Color.fromARGB(255, 0, 0, 0),
-                  fontSize: 18,
-                  fontFamily: 'OpenSans',
-                ),
-              ),
               const SizedBox(
                 height: 5,
               ),
               ElevatedButton(
                 onPressed: () => navigateToSignup(context, const Sign()),
                 style: ButtonStyle(
-                  backgroundColor:
-                      MaterialStateProperty.all<Color>(Colors.blue),
+                  backgroundColor: MaterialStateProperty.all<Color>(
+                      Color.fromARGB(255, 81, 24, 24)),
                   fixedSize:
-                      MaterialStateProperty.all<Size>(const Size(250, 40)),
+                      MaterialStateProperty.all<Size>(const Size(200, 40)),
                 ),
                 child: const Text(
                   'I AM A STUDENT',
@@ -62,10 +54,10 @@ class _WelcomeState extends State<Welcome> {
               ElevatedButton(
                 onPressed: () => navigateToSignup(context, const Sign()),
                 style: ButtonStyle(
-                  backgroundColor:
-                      MaterialStateProperty.all<Color>(Colors.blue),
+                  backgroundColor: MaterialStateProperty.all<Color>(
+                      Color.fromARGB(255, 81, 24, 24)),
                   fixedSize:
-                      MaterialStateProperty.all<Size>(const Size(250, 40)),
+                      MaterialStateProperty.all<Size>(const Size(200, 40)),
                 ),
                 child: const Text(
                   'I AM A LECTURER',

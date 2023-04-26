@@ -27,7 +27,7 @@ class _SignState extends State<Sign> {
                 height: 10,
               ),
               const SizedBox(
-                width: 350,
+                width: 300,
                 child: TextField(
                   decoration: InputDecoration(
                     hintText: 'USERNAME',
@@ -39,7 +39,7 @@ class _SignState extends State<Sign> {
                 height: 10,
               ),
               const SizedBox(
-                width: 350,
+                width: 300,
                 child: TextField(
                   obscureText: true,
                   decoration: InputDecoration(
@@ -48,13 +48,19 @@ class _SignState extends State<Sign> {
                   ),
                 ),
               ),
+              const SizedBox(
+                height: 10,
+              ),
               const Text(
                 'FORGOT USERNAME OR PASSWORD?',
                 style: TextStyle(
                   color: Color.fromARGB(255, 0, 0, 0),
-                  fontSize: 18,
+                  fontSize: 15,
                   fontFamily: 'OpenSans',
                 ),
+              ),
+              const SizedBox(
+                height: 10,
               ),
               ElevatedButton(
                 onPressed: () => navigateToHomepage(context, const homepage()),
@@ -62,7 +68,7 @@ class _SignState extends State<Sign> {
                   backgroundColor: MaterialStateProperty.all<Color>(
                       Color.fromARGB(255, 81, 24, 24)),
                   fixedSize:
-                      MaterialStateProperty.all<Size>(const Size(250, 40)),
+                      MaterialStateProperty.all<Size>(const Size(200, 40)),
                 ),
                 child: const Text(
                   'LOGIN',
@@ -74,13 +80,19 @@ class _SignState extends State<Sign> {
                   ),
                 ),
               ),
+              const SizedBox(
+                height: 10,
+              ),
               const Text(
                 'SOME COURSES MAY ALLOW GUEST ACCESS',
                 style: TextStyle(
                   color: Color.fromARGB(255, 0, 0, 0),
-                  fontSize: 18,
+                  fontSize: 15,
                   fontFamily: 'OpenSans',
                 ),
+              ),
+              const SizedBox(
+                height: 10,
               ),
               ElevatedButton(
                 onPressed: null,
@@ -88,7 +100,7 @@ class _SignState extends State<Sign> {
                   backgroundColor: MaterialStateProperty.all<Color>(
                       Color.fromARGB(255, 81, 24, 24)),
                   fixedSize:
-                      MaterialStateProperty.all<Size>(const Size(250, 40)),
+                      MaterialStateProperty.all<Size>(const Size(200, 40)),
                 ),
                 child: const Text(
                   'LOGIN AS A GUEST',
