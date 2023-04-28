@@ -1,37 +1,15 @@
 import 'package:flutter/material.dart';
-import '../homepage/homepage.dart';
-import 'package:http/http.dart';
 
+import 'homepage.dart';
 
 class Sign extends StatefulWidget {
-  const Sign({Key? key});
+  const Sign({super.key});
 
   @override
   State<Sign> createState() => _SignState();
 }
 
 class _SignState extends State<Sign> {
-  final nameController = TextEditingController();
-  final passwordController = TextEditingController();
-
-  void login() async {
-    Response response = await get(Uri.parse(
-        'https://susllms2.000webhostapp.com/student/logincheck.php?indexnum=${nameController.text}&password=${passwordController.text}'));
-    if (response.body == "1") {
-      // ignore: avoid_print
-      print("Login successful");
-      // ignore: use_build_context_synchronously
-      navigateToHomepage(context, const homepage());
-    } else {
-      // ignore: avoid_print
-      print("Login failed");
-    }
-  }
-
-  void loginAsGuest() {
-    // handle guest login here
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -49,18 +27,10 @@ class _SignState extends State<Sign> {
               const SizedBox(
                 height: 10,
               ),
-
               const SizedBox(
                 width: 300,
                 child: TextField(
                   decoration: InputDecoration(
-
-              SizedBox(
-                width: 300,
-                child: TextField(
-                  controller: nameController,
-                  decoration: const InputDecoration(
-
                     hintText: 'USERNAME',
                     border: OutlineInputBorder(),
                   ),
@@ -69,20 +39,11 @@ class _SignState extends State<Sign> {
               const SizedBox(
                 height: 10,
               ),
-
               const SizedBox(
                 width: 300,
                 child: TextField(
                   obscureText: true,
                   decoration: InputDecoration(
-
-              SizedBox(
-                width: 300,
-                child: TextField(
-                  obscureText: true,
-                  controller: passwordController,
-                  decoration: const InputDecoration(
-
                     hintText: 'PASSWORD',
                     border: OutlineInputBorder(),
                   ),
@@ -103,16 +64,10 @@ class _SignState extends State<Sign> {
                 height: 10,
               ),
               ElevatedButton(
-
                 onPressed: () => navigateToHomepage(context, const homepage()),
                 style: ButtonStyle(
                   backgroundColor: MaterialStateProperty.all<Color>(
                       Color.fromARGB(255, 81, 24, 24)),
-
-                onPressed: login,
-                style: ButtonStyle(
-                  backgroundColor: MaterialStateProperty.all<Color>(
-
                   fixedSize:
                       MaterialStateProperty.all<Size>(const Size(200, 40)),
                 ),
@@ -144,11 +99,7 @@ class _SignState extends State<Sign> {
                 onPressed: null,
                 style: ButtonStyle(
                   backgroundColor: MaterialStateProperty.all<Color>(
-
                       Color.fromARGB(255, 81, 24, 24)),
-
-                      const Color.fromARGB(255, 81, 24, 24)),
-
                   fixedSize:
                       MaterialStateProperty.all<Size>(const Size(200, 40)),
                 ),
