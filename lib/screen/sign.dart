@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import 'package:flutter_application_5/homepage/homepage.dart';
 
 class Sign extends StatefulWidget {
   const Sign({super.key});
@@ -14,68 +14,62 @@ class _SignState extends State<Sign> {
     return Scaffold(
       body: Container(
         color: Colors.white,
-
         child: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-
               Image.asset(
                 'Assets/images/logo.png',
                 width: 200,
                 height: 100,
               ),
-
               const SizedBox(
                 height: 10,
               ),
-              
-
               const SizedBox(
-                width: 350,
+                width: 300,
                 child: TextField(
-                decoration: InputDecoration(
-                  hintText: 'USERNAME',
-                  border: OutlineInputBorder(),
-                ),
+                  decoration: InputDecoration(
+                    hintText: 'USERNAME',
+                    border: OutlineInputBorder(),
+                  ),
                 ),
               ),
-              
-            const SizedBox(
+              const SizedBox(
                 height: 10,
               ),
-
               const SizedBox(
-                width: 350,
+                width: 300,
                 child: TextField(
                   obscureText: true,
                   decoration: InputDecoration(
-                  hintText: 'PASSWORD',
-                  border: OutlineInputBorder(),
-                ),
+                    hintText: 'PASSWORD',
+                    border: OutlineInputBorder(),
+                  ),
                 ),
               ),
-
-             
-
+              const SizedBox(
+                height: 10,
+              ),
               const Text(
                 'FORGOT USERNAME OR PASSWORD?',
                 style: TextStyle(
                   color: Color.fromARGB(255, 0, 0, 0),
-                  fontSize: 18,
+                  fontSize: 15,
                   fontFamily: 'OpenSans',
                 ),
               ),
-
+              const SizedBox(
+                height: 10,
+              ),
               ElevatedButton(
-                onPressed:null,
+                onPressed: () => navigateToHomepage(context, const homepage()),
                 style: ButtonStyle(
-                  backgroundColor:
-                      MaterialStateProperty.all<Color>(Colors.blue),
+                  backgroundColor: MaterialStateProperty.all<Color>(
+                      Color.fromARGB(255, 81, 24, 24)),
                   fixedSize:
-                      MaterialStateProperty.all<Size>(const Size(250, 40)),
+                      MaterialStateProperty.all<Size>(const Size(200, 40)),
                 ),
-
                 child: const Text(
                   'LOGIN',
                   style: TextStyle(
@@ -86,25 +80,28 @@ class _SignState extends State<Sign> {
                   ),
                 ),
               ),
-
+              const SizedBox(
+                height: 10,
+              ),
               const Text(
                 'SOME COURSES MAY ALLOW GUEST ACCESS',
                 style: TextStyle(
                   color: Color.fromARGB(255, 0, 0, 0),
-                  fontSize: 18,
+                  fontSize: 15,
                   fontFamily: 'OpenSans',
                 ),
               ),
-
+              const SizedBox(
+                height: 10,
+              ),
               ElevatedButton(
-                onPressed:null,
+                onPressed: null,
                 style: ButtonStyle(
-                  backgroundColor:
-                      MaterialStateProperty.all<Color>(Colors.blue),
+                  backgroundColor: MaterialStateProperty.all<Color>(
+                      Color.fromARGB(255, 81, 24, 24)),
                   fixedSize:
-                      MaterialStateProperty.all<Size>(const Size(250, 40)),
+                      MaterialStateProperty.all<Size>(const Size(200, 40)),
                 ),
-
                 child: const Text(
                   'LOGIN AS A GUEST',
                   style: TextStyle(
@@ -115,11 +112,17 @@ class _SignState extends State<Sign> {
                   ),
                 ),
               ),
-
             ],
           ),
         ),
       ),
     );
   }
+}
+
+void navigateToHomepage(BuildContext context, Widget homepageWidget) {
+  Navigator.push(
+    context,
+    MaterialPageRoute(builder: (context) => homepageWidget),
+  );
 }

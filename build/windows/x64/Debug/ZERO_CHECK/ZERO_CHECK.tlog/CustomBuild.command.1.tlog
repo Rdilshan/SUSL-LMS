@@ -1,0 +1,10 @@
+^C:\USERS\HP\ONEDRIVE\DOCUMENTS\GITHUB\SUSL-LMS\BUILD\WINDOWS\CMAKEFILES\BFF7B39DE0BEF7D6E26635EE2DAFE458\GENERATE.STAMP.RULE
+setlocal
+"C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -SC:/Users/HP/OneDrive/Documents/GitHub/SUSL-LMS/windows -BC:/Users/HP/OneDrive/Documents/GitHub/SUSL-LMS/build/windows --check-stamp-list CMakeFiles/generate.stamp.list --vs-solution-file C:/Users/HP/OneDrive/Documents/GitHub/SUSL-LMS/build/windows/flutter_application_5.sln
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
