@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import '../homepage/homepage.dart';
 import 'package:http/http.dart';
 
+
 class Sign extends StatefulWidget {
   const Sign({Key? key});
 
@@ -48,11 +49,18 @@ class _SignState extends State<Sign> {
               const SizedBox(
                 height: 10,
               ),
+
+              const SizedBox(
+                width: 300,
+                child: TextField(
+                  decoration: InputDecoration(
+
               SizedBox(
                 width: 300,
                 child: TextField(
                   controller: nameController,
                   decoration: const InputDecoration(
+
                     hintText: 'USERNAME',
                     border: OutlineInputBorder(),
                   ),
@@ -61,12 +69,20 @@ class _SignState extends State<Sign> {
               const SizedBox(
                 height: 10,
               ),
+
+              const SizedBox(
+                width: 300,
+                child: TextField(
+                  obscureText: true,
+                  decoration: InputDecoration(
+
               SizedBox(
                 width: 300,
                 child: TextField(
                   obscureText: true,
                   controller: passwordController,
                   decoration: const InputDecoration(
+
                     hintText: 'PASSWORD',
                     border: OutlineInputBorder(),
                   ),
@@ -87,10 +103,16 @@ class _SignState extends State<Sign> {
                 height: 10,
               ),
               ElevatedButton(
+
+                onPressed: () => navigateToHomepage(context, const homepage()),
+                style: ButtonStyle(
+                  backgroundColor: MaterialStateProperty.all<Color>(
+                      Color.fromARGB(255, 81, 24, 24)),
+
                 onPressed: login,
                 style: ButtonStyle(
                   backgroundColor: MaterialStateProperty.all<Color>(
-                      const Color.fromARGB(255, 81, 24, 24)),
+
                   fixedSize:
                       MaterialStateProperty.all<Size>(const Size(200, 40)),
                 ),
@@ -122,7 +144,11 @@ class _SignState extends State<Sign> {
                 onPressed: null,
                 style: ButtonStyle(
                   backgroundColor: MaterialStateProperty.all<Color>(
+
+                      Color.fromARGB(255, 81, 24, 24)),
+
                       const Color.fromARGB(255, 81, 24, 24)),
+
                   fixedSize:
                       MaterialStateProperty.all<Size>(const Size(200, 40)),
                 ),

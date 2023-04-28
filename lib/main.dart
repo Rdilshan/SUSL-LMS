@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import 'Src/theme/theme.dart';
 import 'screen/splash.dart';
 
 void main() {
@@ -11,7 +12,12 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      theme: LMStheme.lightTheme,
+      darkTheme: LMStheme.darkTheme,
+      themeMode: ThemeMode.system,
       home: Splash(),
     );
   }
