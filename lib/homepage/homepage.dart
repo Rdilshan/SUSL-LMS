@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_5/lecturer/createnew.dart';
 import 'package:flutter_application_5/submit_assignment/assignment.dart';
+import 'package:flutter_application_5/lecturer/newassignment.dart';
 
 // ignore: camel_case_types
 class homepage extends StatefulWidget {
@@ -24,7 +26,7 @@ class _homepageState extends State<homepage> {
                 height: 10,
               ),
               const Text(
-                'UPCOMING ACTIVITIES',
+                'TEMPORARY HOME PAGE',
                 style: TextStyle(
                   color: Color.fromARGB(255, 0, 0, 0),
                   fontSize: 18,
@@ -35,7 +37,7 @@ class _homepageState extends State<homepage> {
                 height: 10,
               ),
               const Text(
-                'RECENTLY ACCESSED COURSES',
+                'ONLY FOR BUTTONS',
                 style: TextStyle(
                   color: Color.fromARGB(255, 0, 0, 0),
                   fontSize: 18,
@@ -62,7 +64,8 @@ class _homepageState extends State<homepage> {
                 ),
               ),
               ElevatedButton(
-                onPressed: null,
+                onPressed: () =>
+                    navigateTonewAssignment(context, const newassignment()),
                 style: ButtonStyle(
                   backgroundColor: MaterialStateProperty.all<Color>(
                       Color.fromARGB(255, 81, 24, 24)),
@@ -70,7 +73,26 @@ class _homepageState extends State<homepage> {
                       MaterialStateProperty.all<Size>(const Size(250, 40)),
                 ),
                 child: const Text(
-                  'MY COURSES',
+                  'NEW ASSIGNMENT',
+                  style: TextStyle(
+                    color: Color.fromARGB(255, 255, 255, 255),
+                    fontSize: 18,
+                    fontFamily: 'OpenSans',
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
+              ElevatedButton(
+                onPressed: () =>
+                    navigateTocreatenew(context, const createnew()),
+                style: ButtonStyle(
+                  backgroundColor: MaterialStateProperty.all<Color>(
+                      Color.fromARGB(255, 81, 24, 24)),
+                  fixedSize:
+                      MaterialStateProperty.all<Size>(const Size(250, 40)),
+                ),
+                child: const Text(
+                  'CREATE NEW',
                   style: TextStyle(
                     color: Color.fromARGB(255, 255, 255, 255),
                     fontSize: 18,
@@ -91,5 +113,12 @@ void navigateToAssignment(BuildContext context, Widget assignmentWidget) {
   Navigator.push(
     context,
     MaterialPageRoute(builder: (context) => assignmentWidget),
+  );
+}
+
+void navigateTocreatenew(BuildContext context, Widget createnewWidget) {
+  Navigator.push(
+    context,
+    MaterialPageRoute(builder: (context) => createnewWidget),
   );
 }

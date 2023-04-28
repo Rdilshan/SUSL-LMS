@@ -1,4 +1,4 @@
-#Tue Apr 25 12:42:35 IST 2023
-base.0=F\:\\Flutter\\flutter_application_5\\build\\app\\intermediates\\dex\\debug\\mergeDexDebug\\classes.dex
+#Fri Apr 28 17:40:55 IST 2023
+base.0=C\:\\Users\\HP\\OneDrive\\Documents\\GitHub\\SUSL-LMS\\build\\app\\intermediates\\dex\\debug\\mergeDexDebug\\classes.dex
 renamed.0=classes.dex
 path.0=classes.dex
