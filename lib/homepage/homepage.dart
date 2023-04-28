@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_5/lecturer/createnew.dart';
+import 'package:flutter_application_5/myaccount/myaccount.dart';
 import 'package:flutter_application_5/submit_assignment/assignment.dart';
 import 'package:flutter_application_5/lecturer/newassignment.dart';
 
@@ -42,6 +43,25 @@ class _homepageState extends State<homepage> {
                   color: Color.fromARGB(255, 0, 0, 0),
                   fontSize: 18,
                   fontFamily: 'OpenSans',
+                ),
+              ),
+              ElevatedButton(
+                onPressed: () =>
+                    navigateTomyaccount(context, const myaccount()),
+                style: ButtonStyle(
+                  backgroundColor: MaterialStateProperty.all<Color>(
+                      Color.fromARGB(255, 81, 24, 24)),
+                  fixedSize:
+                      MaterialStateProperty.all<Size>(const Size(250, 40)),
+                ),
+                child: const Text(
+                  'MY ACCOUNT',
+                  style: TextStyle(
+                    color: Color.fromARGB(255, 255, 255, 255),
+                    fontSize: 18,
+                    fontFamily: 'OpenSans',
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
               ),
               ElevatedButton(
@@ -107,6 +127,13 @@ class _homepageState extends State<homepage> {
       ),
     );
   }
+}
+
+void navigateTomyaccount(BuildContext context, Widget myaccountWidget) {
+  Navigator.push(
+    context,
+    MaterialPageRoute(builder: (context) => myaccountWidget),
+  );
 }
 
 void navigateToAssignment(BuildContext context, Widget assignmentWidget) {
