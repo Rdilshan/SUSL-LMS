@@ -1,45 +1,47 @@
 import 'package:flutter/material.dart';
 
-import 'sign.dart';
+import 'package:flutter_application_5/lecturer/newassignment.dart';
 
-class Welcome extends StatefulWidget {
-  const Welcome({super.key});
+class newquiz extends StatefulWidget {
+  const newquiz({super.key});
 
   @override
-  State<Welcome> createState() => _WelcomeState();
+  State<newquiz> createState() => _newquizState();
 }
 
-class _WelcomeState extends State<Welcome> {
+class _newquizState extends State<newquiz> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(backgroundColor: Colors.white),
       body: Container(
         color: Colors.white,
         child: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Image.asset(
-                'Assets/images/logo.png',
-                width: 200,
-                height: 100,
+              const Text(
+                'CREATE NEW QUIZ',
+                style: TextStyle(
+                  color: Color.fromARGB(255, 0, 0, 0),
+                  fontSize: 18,
+                  fontFamily: 'OpenSans',
+                ),
               ),
               const SizedBox(
                 height: 10,
               ),
-              const SizedBox(
-                height: 5,
-              ),
               ElevatedButton(
-                onPressed: () => navigateToSignup(context, const Sign()),
+                onPressed: () =>
+                    navigateTonewAssignment(context, const newassignment()),
                 style: ButtonStyle(
                   backgroundColor: MaterialStateProperty.all<Color>(
                       Color.fromARGB(255, 81, 24, 24)),
                   fixedSize:
-                      MaterialStateProperty.all<Size>(const Size(200, 40)),
+                      MaterialStateProperty.all<Size>(const Size(150, 40)),
                 ),
                 child: const Text(
-                  'I AM A STUDENT',
+                  'MCQ',
                   style: TextStyle(
                     color: Color.fromARGB(255, 255, 255, 255),
                     fontSize: 18,
@@ -52,15 +54,15 @@ class _WelcomeState extends State<Welcome> {
                 height: 5,
               ),
               ElevatedButton(
-                onPressed: () => navigateToSignup(context, const Sign()),
+                onPressed: null,
                 style: ButtonStyle(
                   backgroundColor: MaterialStateProperty.all<Color>(
                       Color.fromARGB(255, 81, 24, 24)),
                   fixedSize:
-                      MaterialStateProperty.all<Size>(const Size(200, 40)),
+                      MaterialStateProperty.all<Size>(const Size(150, 40)),
                 ),
                 child: const Text(
-                  'I AM A LECTURER',
+                  'FORUM',
                   style: TextStyle(
                     color: Color.fromARGB(255, 255, 255, 255),
                     fontSize: 18,
@@ -68,7 +70,7 @@ class _WelcomeState extends State<Welcome> {
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-              )
+              ),
             ],
           ),
         ),
@@ -77,9 +79,9 @@ class _WelcomeState extends State<Welcome> {
   }
 }
 
-void navigateToSignup(BuildContext context, Widget signupWidget) {
+void navigateTonewAssignment(BuildContext context, Widget newassignmentWidget) {
   Navigator.push(
     context,
-    MaterialPageRoute(builder: (context) => signupWidget),
+    MaterialPageRoute(builder: (context) => newassignmentWidget),
   );
 }
