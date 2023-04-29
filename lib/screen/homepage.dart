@@ -232,9 +232,11 @@ Widget buildCard(CardItem item, BuildContext context) {
   );
 }
 
+
 void navigateToAssignment(BuildContext context, Widget assignmentWidget) {
   Navigator.push(
     context,
     MaterialPageRoute(builder: (context) => assignmentWidget),
   );
 }
+
