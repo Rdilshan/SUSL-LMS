@@ -2,7 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_5/Src/theme/palette.dart';
 
-import '../Src/widgets/subjectContainer.dart';
+import '../Src/widgets/RecentlyAccesssCourses.dart';
+import '../Src/widgets/SubjectBox_MyCourses.dart';
 
 // ignore_for_file: prefer_const_constructors
 
@@ -124,141 +125,9 @@ class _MyCoursesState extends State<MyCourses> {
                   SizedBox(
                     height: 5,
                   ),
-                  Stack(
-                    alignment: AlignmentDirectional.topCenter,
-                    children: [
-                      Container(
-                          margin: const EdgeInsets.only(
-                            left: 15.0,
-                            right: 15.0,
-                          ),
-                          height: 680,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.all(Radius.circular(15)),
-                            color: Colors.white,
-                            boxShadow: [
-                              BoxShadow(
-                                color: Colors.grey.withOpacity(0.2),
-                                spreadRadius: 3,
-                                blurRadius: 8,
-                              ),
-                            ],
-                          )),
-                      Column(
-                        children: [
-                          SizedBox(
-                            height: 12,
-                          ),
-                          Text('RECENTLY ACCESSED COURSES',
-                              style: Theme.of(context).textTheme.headline2),
-                          SizedBox(
-                            height: 12,
-                          ),
-                          Row(
-                            children: [
-                              SizedBox(
-                                width: 26,
-                              ),
-                              InkWell(
-                                onTap: () {
-                                  print("Container clicked ");
-                                },
-                                child: subjectContainer(
-                                    subName: 'Network Protocols',
-                                    subCode: 'SE3102'),
-                              ),
-                              SizedBox(
-                                width: 12,
-                              ),
-                              subjectContainer(
-                                  subName: 'Network Protocols',
-                                  subCode: 'SE3102'),
-                              SizedBox(
-                                width: 12,
-                              ),
-                              subjectContainer(
-                                  subName: 'Network Protocols',
-                                  subCode: 'SE3102'),
-                            ],
-                          ),
-                          SizedBox(
-                            height: 10,
-                          ),
-                          Row(
-                            children: [
-                              SizedBox(
-                                width: 26,
-                              ),
-                              subjectContainer(
-                                  subName: 'Network Protocols',
-                                  subCode: 'SE3102'),
-                              SizedBox(
-                                width: 12,
-                              ),
-                              subjectContainer(
-                                  subName: 'Network Protocols',
-                                  subCode: 'SE3102'),
-                              SizedBox(
-                                width: 12,
-                              ),
-                              subjectContainer(
-                                  subName: 'Network Protocols',
-                                  subCode: 'SE3102'),
-                            ],
-                          ),
-                          SizedBox(
-                            height: 10,
-                          ),
-                          Row(
-                            children: [
-                              SizedBox(
-                                width: 26,
-                              ),
-                              subjectContainer(
-                                  subName: 'Network Protocols',
-                                  subCode: 'SE3102'),
-                              SizedBox(
-                                width: 12,
-                              ),
-                              subjectContainer(
-                                  subName: 'Network Protocols',
-                                  subCode: 'SE3102'),
-                              SizedBox(
-                                width: 12,
-                              ),
-                              subjectContainer(
-                                  subName: 'Network Protocols',
-                                  subCode: 'SE3102'),
-                            ],
-                          ),
-                          SizedBox(
-                            height: 10,
-                          ),
-                          Row(
-                            children: [
-                              SizedBox(
-                                width: 26,
-                              ),
-                              subjectContainer(
-                                  subName: 'Network Protocols',
-                                  subCode: 'SE3102'),
-                              SizedBox(
-                                width: 12,
-                              ),
-                              subjectContainer(
-                                  subName: 'Network Protocols',
-                                  subCode: 'SE3102'),
-                              SizedBox(
-                                width: 12,
-                              ),
-                              subjectContainer(
-                                  subName: 'Network Protocols',
-                                  subCode: 'SE3102'),
-                            ],
-                          ),
-                        ],
-                      )
-                    ],
+                  Padding(
+                    padding: const EdgeInsets.all(15.0),
+                    child: subGrid(),
                   ),
                 ],
               ),
