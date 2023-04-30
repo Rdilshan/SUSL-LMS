@@ -5,6 +5,7 @@ import 'package:flutter_application_5/Src/theme/palette.dart';
 import '../Src/widgets/RecentlyAccesssCourses.dart';
 import '../Src/widgets/SubjectBox_MyCourses.dart';
 import '../Src/widgets/bottomNavBar.dart';
+import '../Src/widgets/sideNav.dart';
 
 // ignore_for_file: prefer_const_constructors
 
@@ -16,6 +17,7 @@ class MyCourses extends StatefulWidget {
 }
 
 class _MyCoursesState extends State<MyCourses> {
+  final scaffoldKey = GlobalKey<ScaffoldState>();
   var _controller = TextEditingController();
   @override
   Widget build(BuildContext context) {
@@ -25,16 +27,23 @@ class _MyCoursesState extends State<MyCourses> {
         top: true,
         child: Scaffold(
             extendBody: true,
+            key: scaffoldKey,
             appBar: AppBar(
               elevation: 0,
               backgroundColor: Colors.transparent,
               leading: IconButton(
-                splashColor: Colors.transparent,
-                // highlightColor: Colors.transparent,
                 icon: const Icon(Icons.menu_rounded),
                 iconSize: 40,
-                color: Colors.brown,
-                onPressed: () {},
+                color: Palette.appBrown,
+                onPressed: () {
+                  if (scaffoldKey.currentState!.isDrawerOpen) {
+                    scaffoldKey.currentState!.closeDrawer();
+                    //close drawer, if drawer is open
+                  } else {
+                    scaffoldKey.currentState!.openDrawer();
+                    //open drawer, if drawer is closed
+                  }
+                },
               ),
               centerTitle: true,
               title: Text('MY COURSES',
@@ -44,8 +53,6 @@ class _MyCoursesState extends State<MyCourses> {
                       ?.copyWith(color: Palette.appBrown)),
               actions: [
                 IconButton(
-                  splashColor: Colors.transparent,
-                  // highlightColor: Colors.transparent,
                   onPressed: () {},
                   icon: Icon(Icons.account_circle_rounded),
                   color: Colors.black54,
@@ -133,7 +140,8 @@ class _MyCoursesState extends State<MyCourses> {
                 ),
               ),
             ),
-            bottomNavigationBar: LMSBottomNavBar()),
+            bottomNavigationBar: LMSBottomNavBar(),
+            drawer: sideNav()),
       ),
     );
   }
