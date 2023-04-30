@@ -51,6 +51,7 @@ class _homepageState extends State<homepage> {
   bool click = true;
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
         key: scaffoldKey,
         //resizeToAvoidBottomInset: false,
@@ -71,14 +72,33 @@ class _homepageState extends State<homepage> {
                 //open drawer, if drawer is closed
               }
             },
-          ),
-          actions: [
-            IconButton(
-              onPressed: () {},
-              icon: Icon(Icons.account_circle_rounded),
-              color: Colors.black54,
+            
+
+    return Container(
+      color: Color.fromARGB(255, 255, 255, 255),
+      child: SafeArea(
+        top: true,
+        child: Scaffold(
+          //backgroundColor: Colors.white,
+          appBar: AppBar(
+            elevation: 0,
+            backgroundColor: Colors.transparent,
+            leading: IconButton(
+              icon: const Icon(Icons.menu_rounded),
               iconSize: 40,
-            )
+              color: Palette.appBrown,
+              onPressed: () {},
+            ),
+            actions: [
+              IconButton(
+                onPressed: () =>
+                    navigateTomyaccount(context, const myaccount()),
+                icon: Icon(Icons.account_circle_rounded),
+                color: Colors.black54,
+                iconSize: 40,
+              )
+                    
+          
           ],
         ),
         body: SafeArea(
@@ -130,16 +150,19 @@ class _homepageState extends State<homepage> {
                               separatorBuilder: (context, _) => SizedBox(
                                 width: 12,
                               ),
-                              itemBuilder: (context, index) => InkWell(
-                                  onTap: () {
-                                    print("Container clicked $index");
-                                    if (index == 0) {
-                                      navigateToAssignment(
-                                          context, const assignment());
-                                    }
-                                  },
-                                  child: buildCard(items[index], context)),
-                            ),
+              
+
+
+                            itemBuilder: (context, index) => InkWell(
+                                onTap: () =>
+                    navigateToAssignment(context, const assignment()),
+                                  //if (index == 0) {
+                                    //navigateToAssignment(
+                                        //context, const assignment());
+                                 // }
+                                },
+                                child: buildCard(items[index], context)),
+main
                           ),
                         ],
                       )
@@ -253,6 +276,7 @@ void navigateToAssignment(BuildContext context, Widget assignmentWidget) {
     MaterialPageRoute(builder: (context) => assignmentWidget),
   );
 }
+
 
 void navigateToMycourses(BuildContext context, Widget assignmentWidget) {
   Navigator.push(
