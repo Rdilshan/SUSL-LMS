@@ -234,7 +234,6 @@ Widget buildCard(CardItem item, BuildContext context) {
   );
 }
 
-//error
 void navigateToAssignment(BuildContext context, Widget assignmentWidget) {
   Navigator.push(
     context,
@@ -242,9 +241,3 @@ void navigateToAssignment(BuildContext context, Widget assignmentWidget) {
   );
 }
 
-void navigateToMycourses(BuildContext context, Widget assignmentWidget) {
-  Navigator.push(
-    context,
-    MaterialPageRoute(builder: (context) => MyCourses()),
-  );
-}

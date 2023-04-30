@@ -4,9 +4,6 @@ import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_5/homepage/homepage.dart';
 
-import '../Src/theme/palette.dart';
-import '../Src/widgets/bottomNavBar.dart';
-
 // ignore: camel_case_types
 class assignment extends StatefulWidget {
   const assignment({super.key});
@@ -286,7 +283,6 @@ class _assignmentState extends State<assignment> {
         ); //yes
   }
 }
-
 //   @override
 //   Widget build(BuildContext context) {
 //     return Scaffold(
