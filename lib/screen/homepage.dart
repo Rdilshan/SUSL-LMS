@@ -65,7 +65,8 @@ class _homepageState extends State<homepage> {
             ),
             actions: [
               IconButton(
-                onPressed: () {},
+                onPressed: () =>
+                    navigateTomyaccount(context, const myaccount()),
                 icon: Icon(Icons.account_circle_rounded),
                 color: Colors.black54,
                 iconSize: 40,
@@ -119,12 +120,12 @@ class _homepageState extends State<homepage> {
                               width: 12,
                             ),
                             itemBuilder: (context, index) => InkWell(
-                                onTap: () {
-                                  print("Container clicked $index");
-                                  if (index == 0) {
-                                    navigateToAssignment(
-                                        context, const assignment());
-                                  }
+                                onTap: () =>
+                    navigateToAssignment(context, const assignment()),
+                                  //if (index == 0) {
+                                    //navigateToAssignment(
+                                        //context, const assignment());
+                                 // }
                                 },
                                 child: buildCard(items[index], context)),
                           ),
@@ -237,6 +238,13 @@ void navigateToAssignment(BuildContext context, Widget assignmentWidget) {
   Navigator.push(
     context,
     MaterialPageRoute(builder: (context) => assignmentWidget),
+  );
+}
+
+void navigateTomyaccount(BuildContext context, Widget myaccountWidget) {
+  Navigator.push(
+    context,
+    MaterialPageRoute(builder: (context) => myaccountWidget),
   );
 }
 
