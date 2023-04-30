@@ -49,6 +49,7 @@ class _homepageState extends State<homepage> {
   bool click = true;
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
         //resizeToAvoidBottomInset: false,
         // extendBody: true,
@@ -60,6 +61,32 @@ class _homepageState extends State<homepage> {
             iconSize: 40,
             color: Palette.appBrown,
             onPressed: () {},
+
+    return Container(
+      color: Color.fromARGB(255, 255, 255, 255),
+      child: SafeArea(
+        top: true,
+        child: Scaffold(
+          //backgroundColor: Colors.white,
+          appBar: AppBar(
+            elevation: 0,
+            backgroundColor: Colors.transparent,
+            leading: IconButton(
+              icon: const Icon(Icons.menu_rounded),
+              iconSize: 40,
+              color: Palette.appBrown,
+              onPressed: () {},
+            ),
+            actions: [
+              IconButton(
+                onPressed: () =>
+                    navigateTomyaccount(context, const myaccount()),
+                icon: Icon(Icons.account_circle_rounded),
+                color: Colors.black54,
+                iconSize: 40,
+              )
+            ],
+main
           ),
           actions: [
             IconButton(
@@ -119,16 +146,19 @@ class _homepageState extends State<homepage> {
                               separatorBuilder: (context, _) => SizedBox(
                                 width: 12,
                               ),
-                              itemBuilder: (context, index) => InkWell(
-                                  onTap: () {
-                                    print("Container clicked $index");
-                                    if (index == 0) {
-                                      navigateToAssignment(
-                                          context, const assignment());
-                                    }
-                                  },
-                                  child: buildCard(items[index], context)),
-                            ),
+              
+
+
+                            itemBuilder: (context, index) => InkWell(
+                                onTap: () =>
+                    navigateToAssignment(context, const assignment()),
+                                  //if (index == 0) {
+                                    //navigateToAssignment(
+                                        //context, const assignment());
+                                 // }
+                                },
+                                child: buildCard(items[index], context)),
+main
                           ),
                         ],
                       )
@@ -238,6 +268,13 @@ void navigateToAssignment(BuildContext context, Widget assignmentWidget) {
   Navigator.push(
     context,
     MaterialPageRoute(builder: (context) => assignmentWidget),
+  );
+}
+
+void navigateTomyaccount(BuildContext context, Widget myaccountWidget) {
+  Navigator.push(
+    context,
+    MaterialPageRoute(builder: (context) => myaccountWidget),
   );
 }
 
