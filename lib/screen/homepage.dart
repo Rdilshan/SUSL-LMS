@@ -7,6 +7,7 @@ import 'package:flutter_application_5/Src/theme/palette.dart';
 
 import '../Src/widgets/RecentlyAccesssCourses.dart';
 import '../Src/widgets/bottomNavBar.dart';
+import '../Src/widgets/sideNav.dart';
 
 class CardItem {
   final String title;
@@ -28,6 +29,7 @@ class homepage extends StatefulWidget {
 }
 
 class _homepageState extends State<homepage> {
+  final scaffoldKey = GlobalKey<ScaffoldState>();
   List<CardItem> items = [
     CardItem(
         title: 'SE3101',
@@ -50,6 +52,7 @@ class _homepageState extends State<homepage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        key: scaffoldKey,
         //resizeToAvoidBottomInset: false,
         // extendBody: true,
         appBar: AppBar(
@@ -59,7 +62,15 @@ class _homepageState extends State<homepage> {
             icon: const Icon(Icons.menu_rounded),
             iconSize: 40,
             color: Palette.appBrown,
-            onPressed: () {},
+            onPressed: () {
+              if (scaffoldKey.currentState!.isDrawerOpen) {
+                scaffoldKey.currentState!.closeDrawer();
+                //close drawer, if drawer is open
+              } else {
+                scaffoldKey.currentState!.openDrawer();
+                //open drawer, if drawer is closed
+              }
+            },
           ),
           actions: [
             IconButton(
@@ -176,7 +187,8 @@ class _homepageState extends State<homepage> {
             ]),
           ),
         ),
-        bottomNavigationBar: LMSBottomNavBar());
+        bottomNavigationBar: LMSBottomNavBar(),
+        drawer: sideNav());
   }
 }
 
@@ -234,6 +246,7 @@ Widget buildCard(CardItem item, BuildContext context) {
   );
 }
 
+//error
 void navigateToAssignment(BuildContext context, Widget assignmentWidget) {
   Navigator.push(
     context,
@@ -241,3 +254,9 @@ void navigateToAssignment(BuildContext context, Widget assignmentWidget) {
   );
 }
 
+void navigateToMycourses(BuildContext context, Widget assignmentWidget) {
+  Navigator.push(
+    context,
+    MaterialPageRoute(builder: (context) => MyCourses()),
+  );
+}
