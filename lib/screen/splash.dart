@@ -45,7 +45,7 @@ class _SplashState extends State<Splash> {
                 'LEARNING MANAGEMENT SYSTEM',
                 style: TextStyle(
                   color: Color.fromARGB(255, 0, 0, 0),
-                  fontSize: 18,
+                  fontSize: 15,
                   fontFamily: 'OpenSans',
                 ),
               ),
@@ -56,7 +56,7 @@ class _SplashState extends State<Splash> {
                 'FACULTY OF COMPUTING',
                 style: TextStyle(
                   color: Color.fromARGB(255, 0, 0, 0),
-                  fontSize: 18,
+                  fontSize: 15,
                   fontFamily: 'OpenSans',
                 ),
               ),
@@ -67,7 +67,7 @@ class _SplashState extends State<Splash> {
                 'SABARAGAMUWA UNIVERSITY OF SRI LANKA',
                 style: TextStyle(
                   color: Color.fromARGB(255, 0, 0, 0),
-                  fontSize: 18,
+                  fontSize: 15,
                   fontFamily: 'OpenSans',
                 ),
               ),
