@@ -2,7 +2,8 @@ import 'dart:io';
 
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_application_5/homepage/homepage.dart';
+import '../Src/widgets/bottomNavBar.dart';
+import 'package:flutter_application_5/Src/widgets/sideNav.dart';
 
 // ignore: camel_case_types
 class myaccount extends StatefulWidget {
@@ -14,6 +15,7 @@ class myaccount extends StatefulWidget {
 
 // ignore: camel_case_types
 class _myaccountState extends State<myaccount> {
+  final scaffoldKey = GlobalKey<ScaffoldState>();
   FilePickerResult? result;
   String? _fileName;
   PlatformFile? pickedfile;
@@ -49,224 +51,183 @@ class _myaccountState extends State<myaccount> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          backgroundColor: Color.fromARGB(255, 81, 24, 24),
+      appBar: AppBar(
+        backgroundColor: Color.fromARGB(255, 81, 24, 24),
+        elevation: 0,
+        leading: IconButton(
+          icon: const Icon(Icons.menu_rounded),
+          iconSize: 40,
+          color: Colors.white,
+          onPressed: () {
+            if (scaffoldKey.currentState!.isDrawerOpen) {
+              scaffoldKey.currentState!.closeDrawer();
+              //close drawer, if drawer is open
+            } else {
+              scaffoldKey.currentState!.openDrawer();
+              //open drawer, if drawer is closed
+            }
+          },
         ),
-        bottomNavigationBar: Container(
-            height: 60,
-            decoration: BoxDecoration(
-              color: Theme.of(context).primaryColor,
-              borderRadius: const BorderRadius.only(
-                topLeft: Radius.circular(20),
-                topRight: Radius.circular(20),
-              ),
-            ),
-            child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  IconButton(
-                    enableFeedback: false,
-                    onPressed: () {},
-                    icon: const Icon(
-                      Icons.home_outlined,
-                      color: Colors.white,
-                      size: 35,
-                    ),
-                  ),
-                  IconButton(
-                    enableFeedback: false,
-                    onPressed: () {},
-                    icon: const Icon(
-                      Icons.work_outline_outlined,
-                      color: Colors.white,
-                      size: 35,
-                    ),
-                  ),
-                  IconButton(
-                    enableFeedback: false,
-                    onPressed: () {},
-                    icon: const Icon(
-                      Icons.widgets_outlined,
-                      color: Colors.white,
-                      size: 35,
-                    ),
-                  ),
-                  IconButton(
-                    enableFeedback: false,
-                    onPressed: () {},
-                    icon: const Icon(
-                      Icons.person_outline,
-                      color: Colors.white,
-                      size: 35,
-                    ),
-                  )
-                ] //yes
+      ),
+      //yes
 
-                ) //yes
+      body: SingleChildScrollView(
+          child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: <Widget>[
+            Container(
+                decoration: const BoxDecoration(
+                  color: Color.fromARGB(255, 81, 24, 24),
+                ),
+                child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: <Widget>[
+                      const SizedBox(
+                        height: 40,
+                      ),
+                      CircleAvatar(
+                        radius: 70,
+                        backgroundImage: AssetImage('photo.jpeg'),
+                      ),
+                      const SizedBox(
+                        height: 20,
+                      ),
+                      const Text(
+                        'Student Name',
+                        style: TextStyle(color: Colors.white, fontSize: 23),
+                      ),
+                      const SizedBox(
+                        height: 15,
+                      ),
+                      const Text(
+                        'studentemail@std.sab.ac.appsc.lk',
+                        style: TextStyle(color: Colors.white, fontSize: 20),
+                      ),
 
-            ), //yes
+                      const SizedBox(
+                        height: 40,
+                      ),
 
-        body: SingleChildScrollView(
-            child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: <Widget>[
-              Container(
-                  decoration: const BoxDecoration(
-                    color: Color.fromARGB(255, 81, 24, 24),
-                    // image: DecorationImage(
-                    //   image: AssetImage('Assets/images/whitebg.png'),
-                    //   fit: BoxFit.cover,
-                    // ),
-                  ),
-                  child: Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: <Widget>[
-                        const SizedBox(
-                          height: 40,
+                      Container(
+                        decoration: const BoxDecoration(
+                          //color: Color.fromARGB(255, 81, 24, 24),
+                          image: DecorationImage(
+                            image: AssetImage('Assets/images/whitebg.png'),
+                            fit: BoxFit.fill,
+                          ),
                         ),
-                        CircleAvatar(
-                          radius: 70,
-                          backgroundImage: AssetImage('photo.jpeg'),
-                        ),
-                        const SizedBox(
-                          height: 20,
-                        ),
-                        const Text(
-                          'Student Name',
-                          style: TextStyle(color: Colors.white, fontSize: 23),
-                        ),
-                        const SizedBox(
-                          height: 15,
-                        ),
-                        const Text(
-                          'studentemail@std.sab.ac.appsc.lk',
-                          style: TextStyle(color: Colors.white, fontSize: 20),
-                        ),
-
-                        const SizedBox(
-                          height: 40,
-                        ),
-
-                        Container(
-                          decoration: const BoxDecoration(
-                            //color: Color.fromARGB(255, 81, 24, 24),
-                            image: DecorationImage(
-                              image: AssetImage('Assets/images/whitebg.png'),
-                              fit: BoxFit.fill,
+                        child: Column(children: [
+                          const SizedBox(
+                            height: 30,
+                          ),
+                          const Text(
+                            'ACADEMIC YEAR',
+                            style: TextStyle(
+                              color: Color.fromARGB(255, 0, 0, 0),
+                              fontSize: 15,
+                              fontFamily: 'OpenSans',
                             ),
                           ),
-                          child: Column(children: [
-                            const SizedBox(
-                              height: 30,
+                          const SizedBox(
+                            height: 10,
+                          ),
+                          const Text(
+                            '19/20',
+                            style: TextStyle(
+                              color: Color.fromARGB(255, 0, 0, 0),
+                              fontSize: 15,
+                              fontFamily: 'OpenSans',
                             ),
-                            const Text(
-                              'ACADEMIC YEAR',
+                          ),
+                          const SizedBox(
+                            height: 20,
+                          ),
+                          const Text(
+                            'DEGREE PROGRAMME',
+                            style: TextStyle(
+                              color: Color.fromARGB(255, 0, 0, 0),
+                              fontSize: 15,
+                              fontFamily: 'OpenSans',
+                            ),
+                          ),
+                          const SizedBox(
+                            height: 10,
+                          ),
+                          const Text(
+                            'BSc. (Hons) in Software Engineering',
+                            style: TextStyle(
+                              color: Color.fromARGB(255, 0, 0, 0),
+                              fontSize: 15,
+                              fontFamily: 'OpenSans',
+                            ),
+                          ),
+                          const SizedBox(
+                            height: 20,
+                          ),
+                          const Text(
+                            'DATE OF ENROLLMENT',
+                            style: TextStyle(
+                              color: Color.fromARGB(255, 0, 0, 0),
+                              fontSize: 15,
+                              fontFamily: 'OpenSans',
+                            ),
+                          ),
+                          Container(
+                            height: 40,
+                            width: 150,
+                            alignment: Alignment.center,
+                            margin: const EdgeInsets.all(20),
+                            padding: const EdgeInsets.all(3),
+                            decoration: BoxDecoration(
+                              border: Border.all(color: Colors.black, width: 2),
+                            ),
+                            child: const Text("DD/MM/YYYY",
+                                style: TextStyle(fontSize: 18)),
+                          ),
+                          const SizedBox(
+                            height: 5,
+                            width: 400,
+                          ),
+                          const SizedBox(
+                            height: 10,
+                          ),
+                          ElevatedButton(
+                            onPressed: null,
+                            style: ButtonStyle(
+                              backgroundColor: MaterialStateProperty.all<Color>(
+                                  Colors.black),
+                              fixedSize: MaterialStateProperty.all<Size>(
+                                  const Size(150, 40)),
+                            ),
+                            child: const Text(
+                              'EDIT PROFILE',
                               style: TextStyle(
-                                color: Color.fromARGB(255, 0, 0, 0),
+                                color: Colors.white,
                                 fontSize: 15,
                                 fontFamily: 'OpenSans',
+                                fontWeight: FontWeight.bold,
                               ),
                             ),
-                            const SizedBox(
-                              height: 10,
-                            ),
-                            const Text(
-                              '19/20',
-                              style: TextStyle(
-                                color: Color.fromARGB(255, 0, 0, 0),
-                                fontSize: 15,
-                                fontFamily: 'OpenSans',
-                              ),
-                            ),
-                            const SizedBox(
-                              height: 20,
-                            ),
-                            const Text(
-                              'DEGREE PROGRAMME',
-                              style: TextStyle(
-                                color: Color.fromARGB(255, 0, 0, 0),
-                                fontSize: 15,
-                                fontFamily: 'OpenSans',
-                              ),
-                            ),
-                            const SizedBox(
-                              height: 10,
-                            ),
-                            const Text(
-                              'BSc. (Hons) in Software Engineering',
-                              style: TextStyle(
-                                color: Color.fromARGB(255, 0, 0, 0),
-                                fontSize: 15,
-                                fontFamily: 'OpenSans',
-                              ),
-                            ),
-                            const SizedBox(
-                              height: 20,
-                            ),
-                            const Text(
-                              'DATE OF ENROLLMENT',
-                              style: TextStyle(
-                                color: Color.fromARGB(255, 0, 0, 0),
-                                fontSize: 15,
-                                fontFamily: 'OpenSans',
-                              ),
-                            ),
-                            Container(
-                              height: 40,
-                              width: 150,
-                              alignment: Alignment.center,
-                              margin: const EdgeInsets.all(20),
-                              padding: const EdgeInsets.all(3),
-                              decoration: BoxDecoration(
-                                border:
-                                    Border.all(color: Colors.black, width: 2),
-                              ),
-                              child: const Text("DD/MM/YYYY",
-                                  style: TextStyle(fontSize: 18)),
-                            ),
-                            const SizedBox(
-                              height: 5,
-                              width: 400,
-                            ),
-                            const SizedBox(
-                              height: 10,
-                            ),
-                            ElevatedButton(
-                              onPressed: null,
-                              style: ButtonStyle(
-                                backgroundColor:
-                                    MaterialStateProperty.all<Color>(
-                                        Colors.black),
-                                fixedSize: MaterialStateProperty.all<Size>(
-                                    const Size(150, 40)),
-                              ),
-                              child: const Text(
-                                'EDIT PROFILE',
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 15,
-                                  fontFamily: 'OpenSans',
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
-                            ),
-                            const SizedBox(
-                              height: 20,
-                            ),
-                          ]),
-                        ),
+                          ),
+                          const SizedBox(
+                            height: 20,
+                          ),
+                        ]),
+                      ),
 
-                        //container
-                      ] //children
+                      //container
+                    ] //children
 
-                      ) //COLUMN
+                    ) //COLUMN
 
-                  ) //CONTAINER
-            ] //CHILD
-                ) //COLUMN
+                ) //CONTAINER
+          ] //CHILD
+              ) //COLUMN
 
-            ) //SINGLESCROLLVIEW
-        ); //yes
+          ), //SINGLESCROLLVIEW
+      bottomNavigationBar: LMSBottomNavBar(), // NGLESCROLLVIEW
+      drawer: sideNav(), //yes
+    ); //yes
   }
 }
   
