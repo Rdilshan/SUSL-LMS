@@ -1,3 +1,17 @@
 
+<<<<<<< Updated upstream
 *.json
 .flutter-plugins
+=======
+.dart_tool/flutter_build/9b4c4ed3f434b2c7e51f8cf55e459590/kernel_snapshot.d
+.dart_tool/flutter_build/9b4c4ed3f434b2c7e51f8cf55e459590/kernel_snapshot.stamp
+.flutter-plugins-dependencies
+build/app/intermediates/incremental/debug-mergeJavaRes/zip-cache/E+_k9KEw4t4WvtQKa4CUFNMRLnY=
+build/app/intermediates/incremental/debug/mergeDebugResources/compile-file-map.properties
+*.txt
+*.d
+*.properties
+*.sha1
+build/app/intermediates/incremental/debug/mergeDebugResources/compile-file-map.properties
+.dart_tool/flutter_build/7b032d6ccf3af605d84cac6c5bc03a9b/.filecache
+>>>>>>> Stashed changes
