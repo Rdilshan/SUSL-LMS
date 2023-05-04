@@ -1,4 +1,8 @@
+<<<<<<< Updated upstream
 #Fri Apr 28 22:17:25 IST 2023
+=======
+#Wed May 03 11:15:24 IST 2023
+>>>>>>> Stashed changes
 base.0=C\:\\Users\\HP\\OneDrive\\Documents\\GitHub\\SUSL-LMS\\build\\app\\intermediates\\dex\\debug\\mergeDexDebug\\classes.dex
 renamed.0=classes.dex
 path.0=classes.dex
