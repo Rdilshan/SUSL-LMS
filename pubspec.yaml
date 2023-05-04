@@ -37,6 +37,7 @@ dependencies:
   cupertino_icons: ^1.0.2
   file_picker: ^5.2.11
   http: ^0.13.5
+  google_fonts: ^4.0.4
 
 dev_dependencies:
   flutter_test:
@@ -67,7 +68,12 @@ flutter:
     - Assets/images/bg.png
     - Assets/images/upload.png
     - Assets/images/whitebg.png
+<<<<<<< Updated upstream
   #   - images/a_dot_ham.jpeg
+=======
+    - Assets/images/logo_2.png
+    #- Assets/images/a_dot_ham.jpeg
+>>>>>>> Stashed changes
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

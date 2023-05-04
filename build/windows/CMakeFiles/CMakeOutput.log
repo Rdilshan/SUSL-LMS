@@ -7,7 +7,7 @@ Id flags:
 The output was:
 0
 MSBuild version 17.5.1+f6fdcf537 for .NET Framework
-Build started 25-Apr-23 5:58:59 PM.
+Build started 03-May-23 10:57:07 AM.
 Included response file: C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Current\Bin\amd64\MSBuild.rsp
 
 Project "C:\Users\HP\OneDrive\Documents\GitHub\SUSL-LMS\build\windows\CMakeFiles\3.25.1-msvc1\CompilerIdCXX\CompilerIdCXX.vcxproj" on node 1 (default targets).
@@ -35,7 +35,7 @@ Build succeeded.
     0 Warning(s)
     0 Error(s)
 
-Time Elapsed 00:00:02.75
+Time Elapsed 00:00:04.62
 
 
 Compilation of the CXX compiler identification source "CMakeCXXCompilerId.cpp" produced "CompilerIdCXX.exe"
@@ -45,15 +45,15 @@ Compilation of the CXX compiler identification source "CMakeCXXCompilerId.cpp" p
 The CXX compiler identification is MSVC, found in "C:/Users/HP/OneDrive/Documents/GitHub/SUSL-LMS/build/windows/CMakeFiles/3.25.1-msvc1/CompilerIdCXX/CompilerIdCXX.exe"
 
 Detecting CXX compiler ABI info compiled with the following output:
-Change Dir: C:/Users/HP/OneDrive/Documents/GitHub/SUSL-LMS/build/windows/CMakeFiles/CMakeScratch/TryCompile-1zk9g5
+Change Dir: C:/Users/HP/OneDrive/Documents/GitHub/SUSL-LMS/build/windows/CMakeFiles/CMakeScratch/TryCompile-lt4mut
 
-Run Build Command(s):C:/Program Files/Microsoft Visual Studio/2022/Community/MSBuild/Current/Bin/amd64/MSBuild.exe cmTC_511d4.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=17.0 /v:m && MSBuild version 17.5.1+f6fdcf537 for .NET Framework
+Run Build Command(s):C:/Program Files/Microsoft Visual Studio/2022/Community/MSBuild/Current/Bin/amd64/MSBuild.exe cmTC_6573f.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=17.0 /v:m && MSBuild version 17.5.1+f6fdcf537 for .NET Framework
 
   Microsoft (R) C/C++ Optimizing Compiler Version 19.35.32217.1 for x64
-  Copyright (C) Microsoft Corporation.  All rights reserved.
   CMakeCXXCompilerABI.cpp
-  cl /c /Zi /W3 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\"Debug\"" /Gm- /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /GR /Fo"cmTC_511d4.dir\Debug\\" /Fd"cmTC_511d4.dir\Debug\vc143.pdb" /external:W3 /Gd /TP /errorReport:queue "C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.25\Modules\CMakeCXXCompilerABI.cpp"
-  cmTC_511d4.vcxproj -> C:\Users\HP\OneDrive\Documents\GitHub\SUSL-LMS\build\windows\CMakeFiles\CMakeScratch\TryCompile-1zk9g5\Debug\cmTC_511d4.exe
+  Copyright (C) Microsoft Corporation.  All rights reserved.
+  cl /c /Zi /W3 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\"Debug\"" /Gm- /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /GR /Fo"cmTC_6573f.dir\Debug\\" /Fd"cmTC_6573f.dir\Debug\vc143.pdb" /external:W3 /Gd /TP /errorReport:queue "C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.25\Modules\CMakeCXXCompilerABI.cpp"
+  cmTC_6573f.vcxproj -> C:\Users\HP\OneDrive\Documents\GitHub\SUSL-LMS\build\windows\CMakeFiles\CMakeScratch\TryCompile-lt4mut\Debug\cmTC_6573f.exe
 
 
 

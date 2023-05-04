@@ -129,7 +129,10 @@ packages:
     source: sdk
     version: "0.0.0"
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
+=======
+>>>>>>> Stashed changes
   google_fonts:
     dependency: "direct main"
     description:
