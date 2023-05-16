@@ -4,6 +4,7 @@ import 'package:flutter_application_5/screen/MyCourses.dart';
 import 'package:flutter_application_5/submit_assignment/assignment.dart';
 import 'package:flutter_application_5/Src/widgets/SubjectBox_MyCourses.dart';
 import 'package:flutter_application_5/Src/theme/palette.dart';
+import 'package:flutter_application_5/myaccount/myaccount.dart';
 
 import '../Src/widgets/RecentlyAccesssCourses.dart';
 import '../Src/widgets/bottomNavBar.dart';
@@ -29,7 +30,6 @@ class homepage extends StatefulWidget {
 }
 
 class _homepageState extends State<homepage> {
-  final scaffoldKey = GlobalKey<ScaffoldState>();
   List<CardItem> items = [
     CardItem(
         title: 'SE3101',
@@ -48,32 +48,9 @@ class _homepageState extends State<homepage> {
         subtitle: 'Report on software design concepts',
         assignment: 'Assignment 1'),
   ];
-  bool click = true;
+
   @override
   Widget build(BuildContext context) {
-
-    return Scaffold(
-        key: scaffoldKey,
-        //resizeToAvoidBottomInset: false,
-        // extendBody: true,
-        appBar: AppBar(
-          elevation: 0,
-          backgroundColor: Colors.transparent,
-          leading: IconButton(
-            icon: const Icon(Icons.menu_rounded),
-            iconSize: 40,
-            color: Palette.appBrown,
-            onPressed: () {
-              if (scaffoldKey.currentState!.isDrawerOpen) {
-                scaffoldKey.currentState!.closeDrawer();
-                //close drawer, if drawer is open
-              } else {
-                scaffoldKey.currentState!.openDrawer();
-                //open drawer, if drawer is closed
-              }
-            },
-            
-
     return Container(
       color: Color.fromARGB(255, 255, 255, 255),
       child: SafeArea(
@@ -97,121 +74,188 @@ class _homepageState extends State<homepage> {
                 color: Colors.black54,
                 iconSize: 40,
               )
-                    
-          
-          ],
-        ),
-        body: SafeArea(
-          bottom: false,
-          child: SingleChildScrollView(
-            child: Stack(children: [
-              Column(
-                children: [
-                  SizedBox(
-                    height: 10,
-                  ),
-                  Stack(
-                    alignment: AlignmentDirectional.topCenter,
-                    children: [
-                      Container(
-                          margin: const EdgeInsets.only(
-                            left: 15.0,
-                            right: 15.0,
+            ],
+          ),
+          body: SingleChildScrollView(
+            child: Column(
+              children: [
+                SizedBox(
+                  height: 10,
+                ),
+                Stack(
+                  alignment: AlignmentDirectional.topCenter,
+                  children: [
+                    Container(
+                        margin: const EdgeInsets.only(
+                          left: 15.0,
+                          right: 15.0,
+                        ),
+                        height: 205,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.all(Radius.circular(15)),
+                          color: Colors.white,
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.grey.withOpacity(0.2),
+                              spreadRadius: 3,
+                              blurRadius: 8,
+                            ),
+                          ],
+                        )),
+                    Column(
+                      children: [
+                        SizedBox(
+                          height: 12,
+                        ),
+                        Text('UPCOMING ACTIVITIES',
+                            style: Theme.of(context).textTheme.headline2),
+                        SizedBox(
+                          height: 12,
+                        ),
+                        Container(
+                          margin:
+                              const EdgeInsets.only(left: 25.0, right: 25.0),
+                          height: 150,
+                          child: ListView.separated(
+                            scrollDirection: Axis.horizontal,
+                            itemCount: 4,
+                            separatorBuilder: (context, _) => SizedBox(
+                              width: 12,
+                            ),
+                            itemBuilder: (context, index) => InkWell(
+                                onTap: () => navigateToAssignment(
+                                    context, const assignment()),
+                                // if (index == 0) {
+                                //   navigateToAssignment(
+                                //       context, const assignment());
+                                // }
+
+                                child: buildCard(items[index], context)),
                           ),
-                          height: 205,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.all(Radius.circular(15)),
-                            color: Colors.white,
-                            boxShadow: [
-                              BoxShadow(
-                                color: Colors.grey.withOpacity(0.2),
-                                spreadRadius: 3,
-                                blurRadius: 8,
+                        ),
+                      ],
+                    )
+                  ],
+                ),
+                SizedBox(
+                  height: 30,
+                ),
+                Stack(
+                  alignment: AlignmentDirectional.topCenter,
+                  children: [
+                    Container(
+                        margin: const EdgeInsets.only(
+                          left: 15.0,
+                          right: 15.0,
+                        ),
+                        height: 365,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.all(Radius.circular(15)),
+                          color: Colors.white,
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.grey.withOpacity(0.2),
+                              spreadRadius: 3,
+                              blurRadius: 8,
+                            ),
+                          ],
+                        )),
+                    Column(
+                      children: [
+                        SizedBox(
+                          height: 12,
+                        ),
+                        Text('RECENTLY ACCESSED COURSES',
+                            style: Theme.of(context).textTheme.headline2),
+                        SizedBox(
+                          height: 12,
+                        ),
+                        Container(
+                          margin:
+                              const EdgeInsets.only(left: 25.0, right: 25.0),
+                          color: Colors.red,
+                          child: Row(
+                            children: [
+                              SizedBox(
+                                width: 26,
                               ),
-                            ],
-                          )),
-                      Column(
-                        children: [
-                          SizedBox(
-                            height: 12,
-                          ),
-                          Text('UPCOMING ACTIVITIES',
-                              style: Theme.of(context).textTheme.headline2),
-                          SizedBox(
-                            height: 12,
-                          ),
-                          Container(
-                            margin:
-                                const EdgeInsets.only(left: 25.0, right: 25.0),
-                            height: 150,
-                            child: ListView.separated(
-                              scrollDirection: Axis.horizontal,
-                              itemCount: 4,
-                              separatorBuilder: (context, _) => SizedBox(
+                              InkWell(
+                                onTap: () {
+                                  print("Container clicked ");
+                                },
+                                child: subjectContainer(
+                                    subName: 'adasd', subCode: 'erer'),
+                              ),
+                              SizedBox(
                                 width: 12,
                               ),
-              
-
-
-                            itemBuilder: (context, index) => InkWell(
-                                onTap: () =>
-                    navigateToAssignment(context, const assignment()),
-                                  //if (index == 0) {
-                                    //navigateToAssignment(
-                                        //context, const assignment());
-                                 // }
-                                },
-                                child: buildCard(items[index], context)),
-main
+                              subjectContainer(
+                                  subName: 'Network Protocols',
+                                  subCode: 'SE3102'),
+                              SizedBox(
+                                width: 12,
+                              ),
+                              subjectContainer(
+                                  subName: 'Network Protocols',
+                                  subCode: 'SE3102'),
+                            ],
                           ),
-                        ],
-                      )
-                    ],
-                  ),
-                  SizedBox(
-                    height: 10,
-                  ),
-                  Stack(
-                    alignment: AlignmentDirectional.topCenter,
-                    children: [
-                      Column(
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.all(15.0),
-                            child: recentSubGrid(),
-                          ),
-                          ElevatedButton(
-                            onPressed: () => navigateToMycourses(
-                                context, const assignment()),
-                            // navigateToAssignment(context, const MyCourses()),
-                            style: ButtonStyle(
-                              backgroundColor: MaterialStateProperty.all<Color>(
-                                  Color(0XFF4D0C04)),
-                              fixedSize: MaterialStateProperty.all<Size>(
-                                  const Size(180, 45)),
+                        ),
+                        SizedBox(
+                          height: 10,
+                        ),
+                        Row(
+                          children: [
+                            SizedBox(
+                              width: 26,
                             ),
-                            child: Text(
-                              'MY COURSES',
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .headline2
-                                  ?.copyWith(color: Colors.white),
+                            subjectContainer(
+                                subName: 'Network Protocols',
+                                subCode: 'SE3102'),
+                            SizedBox(
+                              width: 12,
                             ),
-                          ),
-                          SizedBox(
-                            height: 10,
-                          )
-                        ],
-                      ),
-                    ],
+                            subjectContainer(
+                                subName: 'Network Protocols',
+                                subCode: 'SE3102'),
+                            SizedBox(
+                              width: 12,
+                            ),
+                            subjectContainer(
+                                subName: 'Network Protocols',
+                                subCode: 'SE3102'),
+                          ],
+                        )
+                      ],
+                    )
+                  ],
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                ElevatedButton(
+                  onPressed: () => null,
+                  // navigateToAssignment(context, const MyCourses()),
+                  style: ButtonStyle(
+                    backgroundColor:
+                        MaterialStateProperty.all<Color>(Color(0XFF4D0C04)),
+                    fixedSize:
+                        MaterialStateProperty.all<Size>(const Size(180, 45)),
                   ),
-                ],
-              ),
-            ]),
+                  child: Text(
+                    'MY COURSES',
+                    style: Theme.of(context)
+                        .textTheme
+                        .headline2
+                        ?.copyWith(color: Colors.white),
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
-        bottomNavigationBar: LMSBottomNavBar(),
-        drawer: sideNav());
+      ),
+    );
   }
 }
 
@@ -240,7 +284,7 @@ Widget buildCard(CardItem item, BuildContext context) {
               height: 100,
             ),
             Container(
-              padding: EdgeInsets.only(top: 10.0, left: 10.0, right: 10.0),
+              padding: EdgeInsets.only(top: 10.0, left: 10.0),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -268,8 +312,8 @@ Widget buildCard(CardItem item, BuildContext context) {
     ),
   );
 }
-
 //error
+
 void navigateToAssignment(BuildContext context, Widget assignmentWidget) {
   Navigator.push(
     context,
@@ -277,10 +321,9 @@ void navigateToAssignment(BuildContext context, Widget assignmentWidget) {
   );
 }
 
-
-void navigateToMycourses(BuildContext context, Widget assignmentWidget) {
+void navigateTomyaccount(BuildContext context, Widget myaccountWidget) {
   Navigator.push(
     context,
-    MaterialPageRoute(builder: (context) => MyCourses()),
+    MaterialPageRoute(builder: (context) => myaccountWidget),
   );
 }
