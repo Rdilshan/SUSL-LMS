@@ -1,13 +1,17 @@
 import 'dart:io';
-
+import 'package:google_fonts/google_fonts.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
+
 import 'package:flutter_application_5/homepage/homepage.dart';
+
+import 'package:flutter_application_5/Src/widgets/sideNav.dart';
+import 'package:flutter_application_5/Src/theme/palette.dart';
 import '../Src/widgets/bottomNavBar.dart';
 
 // ignore: camel_case_types
 class assignment extends StatefulWidget {
-  const assignment({super.key});
+  assignment({super.key});
 
   @override
   State<assignment> createState() => _assignmentState();
@@ -15,6 +19,7 @@ class assignment extends StatefulWidget {
 
 // ignore: camel_case_types
 class _assignmentState extends State<assignment> {
+  final scaffoldKey = GlobalKey<ScaffoldState>();
   FilePickerResult? result;
   String? _fileName;
   PlatformFile? pickedfile;
@@ -54,6 +59,20 @@ class _assignmentState extends State<assignment> {
         appBar: AppBar(
           backgroundColor: Color.fromARGB(255, 81, 24, 24),
           elevation: 0,
+          leading: IconButton(
+            icon: const Icon(Icons.menu_rounded),
+            iconSize: 40,
+            color: Colors.white,
+            onPressed: () {
+              if (scaffoldKey.currentState!.isDrawerOpen) {
+                scaffoldKey.currentState!.closeDrawer();
+                //close drawer, if drawer is open
+              } else {
+                scaffoldKey.currentState!.openDrawer();
+                //open drawer, if drawer is closed
+              }
+            },
+          ),
         ),
         body: SingleChildScrollView(
             child: Column(
@@ -144,11 +163,15 @@ class _assignmentState extends State<assignment> {
                               margin: const EdgeInsets.all(20),
                               padding: const EdgeInsets.all(3),
                               decoration: BoxDecoration(
+                                color: Colors.grey,
                                 border:
-                                    Border.all(color: Colors.black, width: 2),
+                                    Border.all(color: Colors.grey, width: 2),
                               ),
-                              child: const Text("PENDING",
-                                  style: TextStyle(fontSize: 18)),
+                              child: const Text(
+                                "PENDING",
+                                style: TextStyle(
+                                    fontSize: 18, color: Colors.white),
+                              ),
                             ),
                             const Text(
                               'DEADLINE',
@@ -166,7 +189,7 @@ class _assignmentState extends State<assignment> {
                               padding: const EdgeInsets.all(3),
                               decoration: BoxDecoration(
                                 border:
-                                    Border.all(color: Colors.black, width: 2),
+                                    Border.all(color: Colors.grey, width: 2),
                               ),
                               child: const Text("DD/MM/YYYY",
                                   style: TextStyle(fontSize: 18)),
@@ -187,7 +210,7 @@ class _assignmentState extends State<assignment> {
                               padding: const EdgeInsets.all(3),
                               decoration: BoxDecoration(
                                 border:
-                                    Border.all(color: Colors.black, width: 2),
+                                    Border.all(color: Colors.grey, width: 2),
                               ),
                               child: const Text("00:00:00",
                                   style: TextStyle(fontSize: 32)),
@@ -243,7 +266,7 @@ class _assignmentState extends State<assignment> {
                                     ),
                             ),
                             const SizedBox(
-                              height: 15,
+                              height: 25,
                             ),
                             ElevatedButton(
                               onPressed: null,
@@ -265,7 +288,7 @@ class _assignmentState extends State<assignment> {
                               ),
                             ),
                             const SizedBox(
-                              height: 20,
+                              height: 150,
                             ),
                           ]),
                         ),
@@ -277,11 +300,14 @@ class _assignmentState extends State<assignment> {
 
                   ) //CONTAINER
             ] //CHILD
-                ) //COLUMN
+                )
+            //COLUMN
 
-            ), //SI
-        bottomNavigationBar: LMSBottomNavBar() // NGLESCROLLVIEW
-        ); //yes
+            ),
+
+        //SI
+        bottomNavigationBar: LMSBottomNavBar(), // NGLESCROLLVIEW
+        drawer: sideNav()); //yes
   }
 }
 //   @override
