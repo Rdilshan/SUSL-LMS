@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_5/Src/theme/palette.dart';
 
-import 'SubjectBox_MyCourses.dart';
-
 class subGrid extends StatefulWidget {
   const subGrid({Key? key}) : super(key: key);
 

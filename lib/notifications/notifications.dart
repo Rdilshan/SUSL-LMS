@@ -19,7 +19,7 @@ class notifications extends StatelessWidget {
   }
 
   // ignore: non_constant_identifier_names
-  Widget ListView() {
+  Widget buildListView() {
     return ListView.separated(
         itemBuilder: (context, index) {
           return ListViewItem(index);

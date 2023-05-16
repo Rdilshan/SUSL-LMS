@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_5/Src/theme/palette.dart';
 
-import 'SubjectBox_MyCourses.dart';
+import 'SubjectBoxMyCourses.dart';
 
 class recentSubGrid extends StatefulWidget {
   const recentSubGrid({Key? key}) : super(key: key);

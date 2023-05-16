@@ -27,7 +27,7 @@ class MyApp extends StatelessWidget {
       theme: LMStheme.lightTheme,
       darkTheme: LMStheme.darkTheme,
       themeMode: ThemeMode.system,
-      home: course(),
+      home: assignment(),
     );
   }
 }
