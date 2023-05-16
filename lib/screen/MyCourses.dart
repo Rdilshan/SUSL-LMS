@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_application_5/Src/theme/palette.dart';
 
 import '../Src/widgets/RecentlyAccesssCourses.dart';
-import '../Src/widgets/SubjectBox_MyCourses.dart';
+import '../Src/widgets/SubjectBoxMyCourses.dart';
 import '../Src/widgets/bottomNavBar.dart';
 import '../Src/widgets/sideNav.dart';
 
