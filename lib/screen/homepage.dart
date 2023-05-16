@@ -1,14 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_5/Src/widgets/SubjectBox_MyCourses.dart';
-import 'package:flutter_application_5/screen/MyCourses.dart';
 import 'package:flutter_application_5/submit_assignment/assignment.dart';
-import 'package:flutter_application_5/Src/widgets/SubjectBox_MyCourses.dart';
 import 'package:flutter_application_5/Src/theme/palette.dart';
 import 'package:flutter_application_5/myaccount/myaccount.dart';
-
-import '../Src/widgets/RecentlyAccesssCourses.dart';
-import '../Src/widgets/bottomNavBar.dart';
-import '../Src/widgets/sideNav.dart';
+import 'package:flutter_application_5/Src/widgets/SubjectBoxMyCourses.dart';
 
 class CardItem {
   final String title;
@@ -123,8 +117,8 @@ class _homepageState extends State<homepage> {
                               width: 12,
                             ),
                             itemBuilder: (context, index) => InkWell(
-                                onTap: () => navigateToAssignment(
-                                    context, const assignment()),
+                                onTap: () =>
+                                    navigateToAssignment(context, assignment()),
                                 // if (index == 0) {
                                 //   navigateToAssignment(
                                 //       context, const assignment());
@@ -257,6 +251,8 @@ class _homepageState extends State<homepage> {
       ),
     );
   }
+
+  subjectContainer({required String subName, required String subCode}) {}
 }
 
 Widget buildCard(CardItem item, BuildContext context) {

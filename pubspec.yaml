@@ -37,6 +37,7 @@ dependencies:
   cupertino_icons: ^1.0.2
   file_picker: ^5.2.11
   http: ^0.13.5
+  google_fonts: ^4.0.4
 
 dev_dependencies:
   flutter_launcher_icons: "^0.13.1"
