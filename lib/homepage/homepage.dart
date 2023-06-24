@@ -1,95 +1,332 @@
-// import 'package:flutter/material.dart';
-// import 'package:flutter_application_5/submit_assignment/assignment.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_application_5/Src/widgets/sideNav.dart';
+import 'package:flutter_application_5/submit_assignment/assignment.dart';
+import 'package:flutter_application_5/Src/theme/palette.dart';
+import 'package:flutter_application_5/myaccount/myaccount.dart';
+import 'package:flutter_application_5/Src/widgets/subjectContainer.dart';
 
-// // ignore: camel_case_types
-// class homepage extends StatefulWidget {
-//   const homepage({super.key});
+class CardItem {
+  final String title;
+  final String subtitle;
+  final String assignment;
 
-//   @override
-//   State<homepage> createState() => _homepageState();
-// }
+  const CardItem({
+    required this.title,
+    required this.subtitle,
+    required this.assignment,
+  });
+}
 
-// // ignore: camel_case_types
-// class _homepageState extends State<homepage> {
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       body: Container(
-//         color: Colors.white,
-//         child: Center(
-//           child: Column(
-//             mainAxisAlignment: MainAxisAlignment.center,
-//             children: [
-//               const SizedBox(
-//                 height: 10,
-//               ),
-//               const Text(
-//                 'UPCOMING ACTIVITIES',
-//                 style: TextStyle(
-//                   color: Color.fromARGB(255, 0, 0, 0),
-//                   fontSize: 18,
-//                   fontFamily: 'OpenSans',
-//                 ),
-//               ),
-//               const SizedBox(
-//                 height: 10,
-//               ),
-//               const Text(
-//                 'RECENTLY ACCESSED COURSES',
-//                 style: TextStyle(
-//                   color: Color.fromARGB(255, 0, 0, 0),
-//                   fontSize: 18,
-//                   fontFamily: 'OpenSans',
-//                 ),
-//               ),
-//               ElevatedButton(
-//                 onPressed: () =>
-//                     navigateToAssignment(context, const assignment()),
-//                 style: ButtonStyle(
-//                   backgroundColor: MaterialStateProperty.all<Color>(
-//                       Color.fromARGB(255, 81, 24, 24)),
-//                   fixedSize:
-//                       MaterialStateProperty.all<Size>(const Size(250, 40)),
-//                 ),
-//                 child: const Text(
-//                   'ASSIGNMENT',
-//                   style: TextStyle(
-//                     color: Color.fromARGB(255, 255, 255, 255),
-//                     fontSize: 18,
-//                     fontFamily: 'OpenSans',
-//                     fontWeight: FontWeight.bold,
-//                   ),
-//                 ),
-//               ),
-//               ElevatedButton(
-//                 onPressed: null,
-//                 style: ButtonStyle(
-//                   backgroundColor: MaterialStateProperty.all<Color>(
-//                       Color.fromARGB(255, 81, 24, 24)),
-//                   fixedSize:
-//                       MaterialStateProperty.all<Size>(const Size(250, 40)),
-//                 ),
-//                 child: const Text(
-//                   'MY COURSES',
-//                   style: TextStyle(
-//                     color: Color.fromARGB(255, 255, 255, 255),
-//                     fontSize: 18,
-//                     fontFamily: 'OpenSans',
-//                     fontWeight: FontWeight.bold,
-//                   ),
-//                 ),
-//               ),
-//             ],
-//           ),
-//         ),
-//       ),
-//     );
-//   }
-// }
+class homepage extends StatefulWidget {
+  const homepage({Key? key}) : super(key: key);
 
-// void navigateToAssignment(BuildContext context, Widget assignmentWidget) {
-//   Navigator.push(
-//     context,
-//     MaterialPageRoute(builder: (context) => assignmentWidget),
-//   );
-// }
+  @override
+  State<homepage> createState() => _homepageState();
+}
+
+class _homepageState extends State<homepage> {
+  List<CardItem> items = [
+    CardItem(
+        title: 'SE3101',
+        subtitle: 'Report on software design concepts',
+        assignment: 'Assignment 1'),
+    CardItem(
+        title: 'SE3102',
+        subtitle: 'Report on software design concepts',
+        assignment: 'Assignment 2'),
+    CardItem(
+        title: 'SE3103',
+        subtitle: 'Report on software design concepts',
+        assignment: 'Assignment 3'),
+    CardItem(
+        title: 'SE3104',
+        subtitle: 'Report on software design concepts',
+        assignment: 'Assignment 1'),
+  ];
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      color: Color.fromARGB(255, 255, 255, 255),
+      child: SafeArea(
+        top: true,
+        child: Scaffold(
+          //backgroundColor: Colors.white,
+          appBar: AppBar(
+            elevation: 0,
+            backgroundColor: Colors.transparent,
+            leading: IconButton(
+              icon: const Icon(Icons.menu_rounded),
+              iconSize: 40,
+              color: Palette.appBrown,
+              onPressed: () => navigateToSideNav(context, sideNav()),
+            ),
+            actions: [
+              IconButton(
+                onPressed: () =>
+                    navigateTomyaccount(context, const myaccount()),
+                icon: Icon(Icons.account_circle_rounded),
+                color: Colors.black54,
+                iconSize: 40,
+              )
+            ],
+          ),
+          body: SingleChildScrollView(
+            child: Column(
+              children: [
+                SizedBox(
+                  height: 10,
+                ),
+                Stack(
+                  alignment: AlignmentDirectional.topCenter,
+                  children: [
+                    Container(
+                        margin: const EdgeInsets.only(
+                          left: 15.0,
+                          right: 15.0,
+                        ),
+                        height: 205,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.all(Radius.circular(15)),
+                          color: Colors.white,
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.grey.withOpacity(0.2),
+                              spreadRadius: 3,
+                              blurRadius: 8,
+                            ),
+                          ],
+                        )),
+                    Column(
+                      children: [
+                        SizedBox(
+                          height: 12,
+                        ),
+                        Text('UPCOMING ACTIVITIES',
+                            style: Theme.of(context).textTheme.headline2),
+                        SizedBox(
+                          height: 12,
+                        ),
+                        Container(
+                          margin:
+                              const EdgeInsets.only(left: 25.0, right: 25.0),
+                          height: 150,
+                          child: ListView.separated(
+                            scrollDirection: Axis.horizontal,
+                            itemCount: 4,
+                            separatorBuilder: (context, _) => SizedBox(
+                              width: 12,
+                            ),
+                            itemBuilder: (context, index) => InkWell(
+                                onTap: () =>
+                                    navigateToAssignment(context, assignment()),
+                                // if (index == 0) {
+                                //   navigateToAssignment(
+                                //       context, const assignment());
+                                // }
+
+                                child: buildCard(items[index], context)),
+                          ),
+                        ),
+                      ],
+                    )
+                  ],
+                ),
+                SizedBox(
+                  height: 30,
+                ),
+                Stack(
+                  alignment: AlignmentDirectional.topCenter,
+                  children: [
+                    Container(
+                        margin: const EdgeInsets.only(
+                          left: 15.0,
+                          right: 15.0,
+                        ),
+                        height: 370,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.all(Radius.circular(15)),
+                          color: Colors.white,
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.grey.withOpacity(0.2),
+                              spreadRadius: 3,
+                              blurRadius: 8,
+                            ),
+                          ],
+                        )),
+                    Column(
+                      children: [
+                        SizedBox(
+                          height: 12,
+                        ),
+                        Text('RECENTLY ACCESSED COURSES',
+                            style: Theme.of(context).textTheme.headline2),
+                        SizedBox(
+                          height: 12,
+                        ),
+                        Container(
+                          margin:
+                              const EdgeInsets.only(left: 25.0, right: 25.0),
+                          height: 150,
+                          child: ListView.separated(
+                            scrollDirection: Axis.horizontal,
+                            itemCount: 4,
+                            separatorBuilder: (context, _) => SizedBox(
+                              width: 12,
+                            ),
+                            itemBuilder: (context, index) => InkWell(
+                              onTap: () {
+                                print("Container clicked ");
+                              },
+                              child: subjectContainer(
+                                  subName: 'Network Protocols',
+                                  subCode: 'SE3102'),
+                              // onTap: () =>
+                              //     navigateToAssignment(context, assignment()),
+                              // if (index == 0) {
+                              //   navigateToAssignment(
+                              //       context, const assignment());
+                              // }
+                            ),
+                          ),
+                        ),
+                        SizedBox(
+                          height: 10,
+                        ),
+                        Container(
+                          margin:
+                              const EdgeInsets.only(left: 25.0, right: 25.0),
+                          height: 150,
+                          child: ListView.separated(
+                            scrollDirection: Axis.horizontal,
+                            itemCount: 4,
+                            separatorBuilder: (context, _) => SizedBox(
+                              width: 12,
+                            ),
+                            itemBuilder: (context, index) => InkWell(
+                              onTap: () {
+                                print("Container clicked ");
+                              },
+                              child: subjectContainer(
+                                  subName: 'Network Protocols',
+                                  subCode: 'SE3102'),
+                              // onTap: () =>
+                              //     navigateToAssignment(context, assignment()),
+                              // if (index == 0) {
+                              //   navigateToAssignment(
+                              //       context, const assignment());
+                              // }
+                            ),
+                          ),
+                        ),
+                      ],
+                    )
+                  ],
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                ElevatedButton(
+                  onPressed: () => navigateToAssignment(context, assignment()),
+                  // navigateToAssignment(context, const MyCourses()),
+                  style: ButtonStyle(
+                    backgroundColor:
+                        MaterialStateProperty.all<Color>(Color(0XFF4D0C04)),
+                    fixedSize:
+                        MaterialStateProperty.all<Size>(const Size(180, 45)),
+                  ),
+                  child: Text(
+                    'MY COURSES',
+                    style: Theme.of(context)
+                        .textTheme
+                        .headline2
+                        ?.copyWith(color: Colors.white),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
+  //subjectContainer({required String subName, required String subCode}) {}
+}
+
+Widget buildCard(CardItem item, BuildContext context) {
+  return Container(
+    decoration: BoxDecoration(
+      borderRadius: BorderRadius.all(Radius.circular(15)),
+      border: Border.all(color: Colors.transparent),
+      color: Palette.appBrown,
+    ),
+    width: 200,
+    height: 200,
+    child: Column(
+      children: [
+        Stack(
+          children: [
+            Container(
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.only(
+                    topRight: Radius.circular(15),
+                    topLeft: Radius.circular(15)),
+                border: Border.all(color: Colors.black54),
+                color: Color.fromARGB(255, 255, 255, 255),
+              ),
+              width: 200,
+              height: 100,
+            ),
+            Container(
+              padding: EdgeInsets.only(top: 10.0, left: 10.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(item.title,
+                      style: Theme.of(context).textTheme.headline1),
+                  SizedBox(
+                    height: 3,
+                  ),
+                  Text(item.subtitle,
+                      style: Theme.of(context).textTheme.headlineMedium),
+                ],
+              ),
+            ),
+          ],
+        ),
+        SizedBox(
+          height: 13,
+        ),
+        Text(item.assignment,
+            style: Theme.of(context)
+                .textTheme
+                .displayMedium
+                ?.copyWith(color: Colors.white)),
+      ],
+    ),
+  );
+}
+//error
+
+void navigateToAssignment(BuildContext context, Widget assignmentWidget) {
+  Navigator.push(
+    context,
+    MaterialPageRoute(builder: (context) => assignmentWidget),
+  );
+}
+
+void navigateTomyaccount(BuildContext context, Widget myaccountWidget) {
+  Navigator.push(
+    context,
+    MaterialPageRoute(builder: (context) => myaccountWidget),
+  );
+}
+
+void navigateToSideNav(BuildContext context, Widget sideNavWidget) {
+  Navigator.push(
+    context,
+    MaterialPageRoute(builder: (context) => sideNav()),
+  );
+}
