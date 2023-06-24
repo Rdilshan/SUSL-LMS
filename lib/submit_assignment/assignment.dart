@@ -61,15 +61,7 @@ class _assignmentState extends State<assignment> {
             icon: const Icon(Icons.menu_rounded),
             iconSize: 40,
             color: Colors.white,
-            onPressed: () {
-              if (scaffoldKey.currentState!.isDrawerOpen) {
-                scaffoldKey.currentState!.closeDrawer();
-                //close drawer, if drawer is open
-              } else {
-                scaffoldKey.currentState!.openDrawer();
-                //open drawer, if drawer is closed
-              }
-            },
+            onPressed: () => navigateToSideNav(context, sideNav()),
           ),
         ),
         body: SingleChildScrollView(
@@ -308,6 +300,7 @@ class _assignmentState extends State<assignment> {
         drawer: sideNav()); //yes
   }
 }
+
 //   @override
 //   Widget build(BuildContext context) {
 //     return Scaffold(
@@ -345,3 +338,9 @@ class _assignmentState extends State<assignment> {
 //       ),
 //     );
 //a
+void navigateToSideNav(BuildContext context, Widget sideNavWidget) {
+  Navigator.push(
+    context,
+    MaterialPageRoute(builder: (context) => sideNav()),
+  );
+}

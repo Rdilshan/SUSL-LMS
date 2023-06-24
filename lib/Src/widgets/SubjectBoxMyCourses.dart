@@ -196,7 +196,7 @@ class _subGridState extends State<subGrid> {
                                       "${gridMap.elementAt(index)['subName']}",
                                       style: Theme.of(context)
                                           .textTheme
-                                          .headline3
+                                          .displaySmall
                                           ?.copyWith(color: Colors.white)),
                                 ),
                               ),
@@ -209,7 +209,7 @@ class _subGridState extends State<subGrid> {
                         Text("${gridMap.elementAt(index)['subCode']}",
                             style: Theme.of(context)
                                 .textTheme
-                                .headline2
+                                .displayMedium
                                 ?.copyWith(color: Colors.white)),
                       ],
                     ),

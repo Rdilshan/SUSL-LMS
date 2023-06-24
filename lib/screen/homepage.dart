@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_5/Src/widgets/sideNav.dart';
+import 'package:flutter_application_5/Src/widgets/bottomNavBar.dart';
 import 'package:flutter_application_5/submit_assignment/assignment.dart';
 import 'package:flutter_application_5/Src/theme/palette.dart';
 import 'package:flutter_application_5/myaccount/myaccount.dart';
-import 'package:flutter_application_5/Src/widgets/SubjectBoxMyCourses.dart';
+import 'package:flutter_application_5/Src/widgets/subjectContainer.dart';
 
 class CardItem {
   final String title;
@@ -58,7 +60,7 @@ class _homepageState extends State<homepage> {
               icon: const Icon(Icons.menu_rounded),
               iconSize: 40,
               color: Palette.appBrown,
-              onPressed: () {},
+              onPressed: () => navigateToSideNav(context, sideNav()),
             ),
             actions: [
               IconButton(
@@ -142,7 +144,7 @@ class _homepageState extends State<homepage> {
                           left: 15.0,
                           right: 15.0,
                         ),
-                        height: 365,
+                        height: 370,
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.all(Radius.circular(15)),
                           color: Colors.white,
@@ -167,59 +169,58 @@ class _homepageState extends State<homepage> {
                         Container(
                           margin:
                               const EdgeInsets.only(left: 25.0, right: 25.0),
-                          color: Colors.red,
-                          child: Row(
-                            children: [
-                              SizedBox(
-                                width: 26,
-                              ),
-                              InkWell(
-                                onTap: () {
-                                  print("Container clicked ");
-                                },
-                                child: subjectContainer(
-                                    subName: 'adasd', subCode: 'erer'),
-                              ),
-                              SizedBox(
-                                width: 12,
-                              ),
-                              subjectContainer(
+                          height: 150,
+                          child: ListView.separated(
+                            scrollDirection: Axis.horizontal,
+                            itemCount: 4,
+                            separatorBuilder: (context, _) => SizedBox(
+                              width: 12,
+                            ),
+                            itemBuilder: (context, index) => InkWell(
+                              onTap: () {
+                                print("Container clicked ");
+                              },
+                              child: subjectContainer(
                                   subName: 'Network Protocols',
                                   subCode: 'SE3102'),
-                              SizedBox(
-                                width: 12,
-                              ),
-                              subjectContainer(
-                                  subName: 'Network Protocols',
-                                  subCode: 'SE3102'),
-                            ],
+                              // onTap: () =>
+                              //     navigateToAssignment(context, assignment()),
+                              // if (index == 0) {
+                              //   navigateToAssignment(
+                              //       context, const assignment());
+                              // }
+                            ),
                           ),
                         ),
                         SizedBox(
                           height: 10,
                         ),
-                        Row(
-                          children: [
-                            SizedBox(
-                              width: 26,
-                            ),
-                            subjectContainer(
-                                subName: 'Network Protocols',
-                                subCode: 'SE3102'),
-                            SizedBox(
+                        Container(
+                          margin:
+                              const EdgeInsets.only(left: 25.0, right: 25.0),
+                          height: 150,
+                          child: ListView.separated(
+                            scrollDirection: Axis.horizontal,
+                            itemCount: 4,
+                            separatorBuilder: (context, _) => SizedBox(
                               width: 12,
                             ),
-                            subjectContainer(
-                                subName: 'Network Protocols',
-                                subCode: 'SE3102'),
-                            SizedBox(
-                              width: 12,
+                            itemBuilder: (context, index) => InkWell(
+                              onTap: () {
+                                print("Container clicked ");
+                              },
+                              child: subjectContainer(
+                                  subName: 'Network Protocols',
+                                  subCode: 'SE3102'),
+                              // onTap: () =>
+                              //     navigateToAssignment(context, assignment()),
+                              // if (index == 0) {
+                              //   navigateToAssignment(
+                              //       context, const assignment());
+                              // }
                             ),
-                            subjectContainer(
-                                subName: 'Network Protocols',
-                                subCode: 'SE3102'),
-                          ],
-                        )
+                          ),
+                        ),
                       ],
                     )
                   ],
@@ -228,7 +229,7 @@ class _homepageState extends State<homepage> {
                   height: 20,
                 ),
                 ElevatedButton(
-                  onPressed: () => null,
+                  onPressed: () => navigateToAssignment(context, assignment()),
                   // navigateToAssignment(context, const MyCourses()),
                   style: ButtonStyle(
                     backgroundColor:
@@ -252,14 +253,14 @@ class _homepageState extends State<homepage> {
     );
   }
 
-  subjectContainer({required String subName, required String subCode}) {}
+  //subjectContainer({required String subName, required String subCode}) {}
 }
 
 Widget buildCard(CardItem item, BuildContext context) {
   return Container(
     decoration: BoxDecoration(
       borderRadius: BorderRadius.all(Radius.circular(15)),
-      //border: Border.all(color: Colors.transparent),
+      border: Border.all(color: Colors.transparent),
       color: Palette.appBrown,
     ),
     width: 200,
@@ -290,7 +291,7 @@ Widget buildCard(CardItem item, BuildContext context) {
                     height: 3,
                   ),
                   Text(item.subtitle,
-                      style: Theme.of(context).textTheme.headline4),
+                      style: Theme.of(context).textTheme.headlineMedium),
                 ],
               ),
             ),
@@ -302,12 +303,13 @@ Widget buildCard(CardItem item, BuildContext context) {
         Text(item.assignment,
             style: Theme.of(context)
                 .textTheme
-                .headline2
+                .displayMedium
                 ?.copyWith(color: Colors.white)),
       ],
     ),
   );
 }
+
 //error
 
 void navigateToAssignment(BuildContext context, Widget assignmentWidget) {
@@ -321,5 +323,12 @@ void navigateTomyaccount(BuildContext context, Widget myaccountWidget) {
   Navigator.push(
     context,
     MaterialPageRoute(builder: (context) => myaccountWidget),
+  );
+}
+
+void navigateToSideNav(BuildContext context, Widget sideNavWidget) {
+  Navigator.push(
+    context,
+    MaterialPageRoute(builder: (context) => sideNav()),
   );
 }

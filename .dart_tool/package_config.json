@@ -92,6 +92,12 @@
       "languageVersion": "2.18"
     },
     {
+      "name": "flutter_lints",
+      "rootUri": "file:///C:/Users/HP/AppData/Local/Pub/Cache/hosted/pub.dev/flutter_lints-2.0.1",
+      "packageUri": "lib/",
+      "languageVersion": "2.17"
+    },
+    {
       "name": "flutter_plugin_android_lifecycle",
       "rootUri": "file:///C:/Users/HP/AppData/Local/Pub/Cache/hosted/pub.dev/flutter_plugin_android_lifecycle-2.0.9",
       "packageUri": "lib/",
@@ -138,6 +144,12 @@
       "rootUri": "file:///C:/Users/HP/AppData/Local/Pub/Cache/hosted/pub.dev/json_annotation-4.8.1",
       "packageUri": "lib/",
       "languageVersion": "2.19"
+    },
+    {
+      "name": "lints",
+      "rootUri": "file:///C:/Users/HP/AppData/Local/Pub/Cache/hosted/pub.dev/lints-2.0.1",
+      "packageUri": "lib/",
+      "languageVersion": "2.17"
     },
     {
       "name": "material_color_utilities",
@@ -290,7 +302,7 @@
       "languageVersion": "2.19"
     }
   ],
-  "generated": "2023-05-16T07:10:48.539554Z",
+  "generated": "2023-06-24T03:12:04.341290Z",
   "generator": "pub",
   "generatorVersion": "2.19.6"
 }
