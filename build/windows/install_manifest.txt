@@ -3,10 +3,8 @@ C:/Users/HP/OneDrive/Documents/GitHub/SUSL-LMS/build/windows/runner/Debug/flutte
 C:/Users/HP/OneDrive/Documents/GitHub/SUSL-LMS/build/windows/runner/Debug/data/flutter_assets/AssetManifest.json
 C:/Users/HP/OneDrive/Documents/GitHub/SUSL-LMS/build/windows/runner/Debug/data/flutter_assets/Assets/images/bg.png
 C:/Users/HP/OneDrive/Documents/GitHub/SUSL-LMS/build/windows/runner/Debug/data/flutter_assets/Assets/images/logo.png
-C:/Users/HP/OneDrive/Documents/GitHub/SUSL-LMS/build/windows/runner/Debug/data/flutter_assets/Assets/images/logo_2.png
 C:/Users/HP/OneDrive/Documents/GitHub/SUSL-LMS/build/windows/runner/Debug/data/flutter_assets/Assets/images/menuicon.png
 C:/Users/HP/OneDrive/Documents/GitHub/SUSL-LMS/build/windows/runner/Debug/data/flutter_assets/Assets/images/upload.png
-C:/Users/HP/OneDrive/Documents/GitHub/SUSL-LMS/build/windows/runner/Debug/data/flutter_assets/Assets/images/whitebg.png
 C:/Users/HP/OneDrive/Documents/GitHub/SUSL-LMS/build/windows/runner/Debug/data/flutter_assets/FontManifest.json
 C:/Users/HP/OneDrive/Documents/GitHub/SUSL-LMS/build/windows/runner/Debug/data/flutter_assets/fonts/MaterialIcons-Regular.otf
 C:/Users/HP/OneDrive/Documents/GitHub/SUSL-LMS/build/windows/runner/Debug/data/flutter_assets/fonts/OpenSans-Italic-VariableFont_wdth,wght.ttf

@@ -95,7 +95,6 @@ class _subGridState extends State<subGrid> {
 
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
-    double height = MediaQuery.of(context).size.height;
     double a = 0;
     String b;
     if (itemCount % 3 == 0) {
@@ -196,7 +195,7 @@ class _subGridState extends State<subGrid> {
                                       "${gridMap.elementAt(index)['subName']}",
                                       style: Theme.of(context)
                                           .textTheme
-                                          .displaySmall
+                                          .headline3
                                           ?.copyWith(color: Colors.white)),
                                 ),
                               ),
@@ -209,7 +208,7 @@ class _subGridState extends State<subGrid> {
                         Text("${gridMap.elementAt(index)['subCode']}",
                             style: Theme.of(context)
                                 .textTheme
-                                .displayMedium
+                                .headline2
                                 ?.copyWith(color: Colors.white)),
                       ],
                     ),

@@ -36,9 +36,10 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
   file_picker: ^5.2.11
-  http: ^0.13.5
-  google_fonts: ^4.0.4
-  flutter_lints: ^2.0.1
+  http: ^1.0.0
+  google_fonts: ^5.1.0
+  flutter_platform_widgets: ^3.3.5
+  url_launcher: ^6.1.11
 
 dev_dependencies:
   flutter_launcher_icons: "^0.13.1"
@@ -89,7 +90,6 @@ flutter:
     - Assets/images/upload.png
     - Assets/images/whitebg.png
     - Assets/images/logo_2.png
-  #  - Assets/images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

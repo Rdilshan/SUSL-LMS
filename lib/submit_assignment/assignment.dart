@@ -3,20 +3,91 @@ import 'dart:io';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_5/Src/widgets/sideNav.dart';
-import 'package:flutter_application_5/Src/theme/palette.dart';
+
 import '../Src/widgets/bottomNavBar.dart';
-import '../Src/widgets/bottomNavBar.dart';
+import 'dart:convert';
+import 'package:http/http.dart' as http;
+import 'package:url_launcher/url_launcher.dart';
+
+
+class Assignmentcard {
+  final String assignmentID;
+  final String subject;
+  final String title;
+  final String description;
+  final String deadline;
+  final String attachment;
+
+  const Assignmentcard({
+    required this.assignmentID,
+    required this.subject,
+    required this.title,
+    required this.description,
+    required this.deadline,
+    required this.attachment,
+  });
+}
 
 // ignore: camel_case_types
 class assignment extends StatefulWidget {
-  assignment({super.key});
+  final String itemId;
+
+  assignment({required this.itemId});
 
   @override
   State<assignment> createState() => _assignmentState();
 }
 
-// ignore: camel_case_types
+
+
+
 class _assignmentState extends State<assignment> {
+
+  List<Assignmentcard> assignmentCards = [];
+  List<String> assignmentDeadlines = [];
+  
+  @override
+  void initState() {
+    super.initState();
+    fetchAssignmentCards(widget.itemId);
+  }
+
+  Future<void> fetchAssignmentCards(String itemId) async {
+    final url = 'https://susllms2.000webhostapp.com/student/getoneassignment.php?id=$itemId';
+    print(url);
+
+    final response = await http.get(Uri.parse(url));
+
+    if (response.statusCode == 200) {
+      final responseData = json.decode(response.body);
+
+      setState(() {
+        assignmentCards.clear();
+
+        for (var assignmentData in responseData) {
+          Assignmentcard assignmentCard = Assignmentcard(
+            assignmentID: assignmentData['assignmentID'],
+            subject: assignmentData['subject'],
+            title: assignmentData['title'],
+            description: assignmentData['description'],
+            deadline: assignmentData['deadline'],
+            attachment: assignmentData['attachment'],
+          );
+
+          assignmentCards.add(assignmentCard);
+        }
+      });
+    } else {
+      throw Exception('Failed to fetch assignment cards');
+    }
+  }
+
+String formatTime(assignmentDeadlines) {
+ return assignmentDeadlines;
+}
+
+
+
   final scaffoldKey = GlobalKey<ScaffoldState>();
   FilePickerResult? result;
   String? _fileName;
@@ -61,10 +132,19 @@ class _assignmentState extends State<assignment> {
             icon: const Icon(Icons.menu_rounded),
             iconSize: 40,
             color: Colors.white,
-            onPressed: () => navigateToSideNav(context, sideNav()),
+            onPressed: () {
+              if (scaffoldKey.currentState!.isDrawerOpen) {
+                scaffoldKey.currentState!.closeDrawer();
+                //close drawer, if drawer is open
+              } else {
+                scaffoldKey.currentState!.openDrawer();
+                //open drawer, if drawer is closed
+              }
+            },
           ),
         ),
         body: SingleChildScrollView(
+          
             child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: <Widget>[
@@ -82,34 +162,45 @@ class _assignmentState extends State<assignment> {
                         const SizedBox(
                           height: 30,
                         ),
-                        const Text(
-                          'ASSIGNMENT 01',
+                        Text(
+                          widget.itemId,
                           style: TextStyle(color: Colors.white, fontSize: 20),
                         ),
                         const SizedBox(
                           height: 10,
                         ),
-                        Padding(
+                       Padding(
                           padding: EdgeInsets.all(30),
-                          child: Text(
-                              textAlign: TextAlign.center,
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .headline4
-                                  ?.copyWith(color: Colors.white),
-                              'Write a report on the software design issues faced by a software company of your choice'),
+                          child: ListView.builder(
+                            shrinkWrap: true, // Set shrinkWrap to true
+                            itemCount: assignmentCards.length,
+                            itemBuilder: (context, index) {
+                              return Text(
+                                assignmentCards[index].description,
+                                textAlign: TextAlign.center,
+                                style: Theme.of(context).textTheme.headline4?.copyWith(color: Colors.white),
+                              );
+                            },
+                          ),
+                        ),
+                        const SizedBox(
+                          height: 1,
                         ),
 
-                        const SizedBox(
-                          height: 10,
-                        ),
                         ElevatedButton(
-                          onPressed: null,
+                          onPressed: () async {
+                            if (assignmentCards.isNotEmpty) {
+                              String documentUrl = 'https://susllms2.000webhostapp.com/Assignment/lecture/${assignmentCards[0].attachment}';
+                              if (await canLaunch(documentUrl)) {
+                                await launch(documentUrl);
+                              } else {
+                                throw 'Could not launch $documentUrl';
+                              }
+                            }
+                          },
                           style: ButtonStyle(
-                            backgroundColor:
-                                MaterialStateProperty.all<Color>(Colors.black),
-                            fixedSize: MaterialStateProperty.all<Size>(
-                                const Size(125, 35)),
+                            backgroundColor: MaterialStateProperty.all<Color>(Colors.black),
+                            fixedSize: MaterialStateProperty.all<Size>(const Size(125, 35)),
                           ),
                           child: const Text(
                             'DOWNLOAD',
@@ -121,6 +212,9 @@ class _assignmentState extends State<assignment> {
                             ),
                           ),
                         ),
+
+
+
                         const SizedBox(
                           height: 30,
                         ),
@@ -178,12 +272,26 @@ class _assignmentState extends State<assignment> {
                               margin: const EdgeInsets.all(20),
                               padding: const EdgeInsets.all(3),
                               decoration: BoxDecoration(
-                                border:
-                                    Border.all(color: Colors.grey, width: 2),
+                                border: Border.all(color: Colors.grey, width: 2),
                               ),
-                              child: const Text("DD/MM/YYYY",
-                                  style: TextStyle(fontSize: 18)),
+                              child: ListView.builder(
+                                itemCount: assignmentCards.length,
+                                itemBuilder: (context, index) {
+                                  assignmentDeadlines.add(assignmentCards[index].deadline); 
+                                  return Text(
+                                      assignmentCards[index].deadline,
+                                      textAlign: TextAlign.center,
+                                      style: TextStyle(
+                                        fontSize: 24,
+                                        fontWeight: FontWeight.bold,
+                                        color: const Color.fromARGB(255, 0, 0, 0),
+                                        
+                                      ),
+                                    );
+                                },
+                              ),
                             ),
+
                             const Text(
                               'TIME REMAINING',
                               style: TextStyle(
@@ -202,7 +310,8 @@ class _assignmentState extends State<assignment> {
                                 border:
                                     Border.all(color: Colors.grey, width: 2),
                               ),
-                              child: const Text("00:00:00",
+                              child: Text(
+                                  formatTime(assignmentDeadlines.isNotEmpty ? assignmentDeadlines[0] : ''),
                                   style: TextStyle(fontSize: 32)),
                             ),
                             const SizedBox(
@@ -300,7 +409,6 @@ class _assignmentState extends State<assignment> {
         drawer: sideNav()); //yes
   }
 }
-
 //   @override
 //   Widget build(BuildContext context) {
 //     return Scaffold(
@@ -338,9 +446,3 @@ class _assignmentState extends State<assignment> {
 //       ),
 //     );
 //a
-void navigateToSideNav(BuildContext context, Widget sideNavWidget) {
-  Navigator.push(
-    context,
-    MaterialPageRoute(builder: (context) => sideNav()),
-  );
-}

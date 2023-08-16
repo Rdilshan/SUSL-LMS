@@ -1,26 +1,45 @@
+import 'dart:convert';
 import 'dart:io';
-
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
 import '../Src/widgets/bottomNavBar.dart';
 import 'package:flutter_application_5/Src/widgets/sideNav.dart';
 
-// ignore: camel_case_types
-class myaccount extends StatefulWidget {
-  const myaccount({super.key});
+import '../shared_data.dart';
+
+class MyAccount extends StatefulWidget {
+  const MyAccount({Key? key}) : super(key: key);
 
   @override
-  State<myaccount> createState() => _myaccountState();
+  State<MyAccount> createState() => _MyAccountState();
 }
 
-// ignore: camel_case_types
-class _myaccountState extends State<myaccount> {
+class _MyAccountState extends State<MyAccount> {
   final scaffoldKey = GlobalKey<ScaffoldState>();
   FilePickerResult? result;
   String? _fileName;
-  PlatformFile? pickedfile;
+  PlatformFile? pickedFile;
   bool isLoading = false;
   File? fileToDisplay;
+  Map<String, dynamic>? studentDetails;
+
+  Future<void> fetchStudentDetails() async {
+    final url = 'https://susllms2.000webhostapp.com/student/getstudentDetails.php?id=${SharedData.loginResponse}';
+    try {
+      final response = await http.get(Uri.parse(url));
+      if (response.statusCode == 200) {
+        final data = json.decode(response.body);
+        setState(() {
+          studentDetails = data.isNotEmpty ? data[0] : null;
+        });
+      } else {
+        print('Failed to fetch student details. Status code: ${response.statusCode}');
+      }
+    } catch (e) {
+      print('Error while fetching student details: $e');
+    }
+  }
 
   void pickFile() async {
     try {
@@ -34,10 +53,10 @@ class _myaccountState extends State<myaccount> {
 
       if (result != null) {
         _fileName = result!.files.first.name;
-        pickedfile = result!.files.first;
-        fileToDisplay = File(pickedfile!.path.toString());
+        pickedFile = result!.files.first;
+        fileToDisplay = File(pickedFile!.path.toString());
 
-        print('File Name : $_fileName');
+        print('File Name: $_fileName');
       }
 
       setState(() {
@@ -49,10 +68,17 @@ class _myaccountState extends State<myaccount> {
   }
 
   @override
+  void initState() {
+    super.initState();
+    fetchStudentDetails();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: scaffoldKey,
       appBar: AppBar(
-        backgroundColor: Color.fromARGB(255, 81, 24, 24),
+        backgroundColor: const Color.fromARGB(255, 81, 24, 24),
         elevation: 0,
         leading: IconButton(
           icon: const Icon(Icons.menu_rounded),
@@ -61,62 +87,61 @@ class _myaccountState extends State<myaccount> {
           onPressed: () {
             if (scaffoldKey.currentState!.isDrawerOpen) {
               scaffoldKey.currentState!.closeDrawer();
-              //close drawer, if drawer is open
             } else {
               scaffoldKey.currentState!.openDrawer();
-              //open drawer, if drawer is closed
             }
           },
         ),
       ),
-      //yes
-
       body: SingleChildScrollView(
-          child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: <Widget>[
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: <Widget>[
             Container(
-                decoration: const BoxDecoration(
-                  color: Color.fromARGB(255, 81, 24, 24),
-                ),
-                child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: <Widget>[
-                      const SizedBox(
-                        height: 40,
-                      ),
-                      CircleAvatar(
-                        radius: 70,
-                        backgroundImage: AssetImage('photo.jpeg'),
-                      ),
-                      const SizedBox(
-                        height: 20,
-                      ),
-                      const Text(
-                        'Student Name',
-                        style: TextStyle(color: Colors.white, fontSize: 23),
-                      ),
-                      const SizedBox(
-                        height: 15,
-                      ),
-                      const Text(
-                        'studentemail@std.sab.ac.appsc.lk',
-                        style: TextStyle(color: Colors.white, fontSize: 20),
-                      ),
-
-                      const SizedBox(
-                        height: 40,
-                      ),
-
-                      Container(
-                        decoration: const BoxDecoration(
-                          //color: Color.fromARGB(255, 81, 24, 24),
-                          image: DecorationImage(
-                            image: AssetImage('Assets/images/whitebg.png'),
-                            fit: BoxFit.fill,
-                          ),
+              decoration: const BoxDecoration(
+                color: Color.fromARGB(255, 81, 24, 24),
+              ),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: <Widget>[
+                  const SizedBox(
+                    height: 40,
+                  ),
+                  if (studentDetails != null)
+                  CircleAvatar(
+                    radius: 70,
+                    backgroundImage: NetworkImage(
+                      'https://susllms2.000webhostapp.com/images/student/' +
+                          (studentDetails?['picture'] ?? ''),
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  Text(
+                    studentDetails?['name'] ?? '',
+                    style: TextStyle(color: Colors.white, fontSize: 23),
+                  ),
+                  const SizedBox(
+                    height: 15,
+                  ),
+                  Text(
+                    studentDetails?['email'] ?? '',
+                    style: TextStyle(color: Colors.white, fontSize: 20),
+                  ),
+                  const SizedBox(
+                    height: 40,
+                  ),
+                  
+                    Container(
+                      decoration: const BoxDecoration(
+                        image: DecorationImage(
+                          image: AssetImage('Assets/images/whitebg.png'),
+                          fit: BoxFit.fill,
                         ),
-                        child: Column(children: [
+                      ),
+                      child: Column(
+                        children: [
                           const SizedBox(
                             height: 30,
                           ),
@@ -131,9 +156,9 @@ class _myaccountState extends State<myaccount> {
                           const SizedBox(
                             height: 10,
                           ),
-                          const Text(
-                            '19/20',
-                            style: TextStyle(
+                          Text(
+                            studentDetails?['batch'] ?? '',
+                            style: const TextStyle(
                               color: Color.fromARGB(255, 0, 0, 0),
                               fontSize: 15,
                               fontFamily: 'OpenSans',
@@ -153,9 +178,9 @@ class _myaccountState extends State<myaccount> {
                           const SizedBox(
                             height: 10,
                           ),
-                          const Text(
-                            'BSc. (Hons) in Software Engineering',
-                            style: TextStyle(
+                          Text(
+                            studentDetails?['degree'] ?? '',
+                            style: const TextStyle(
                               color: Color.fromARGB(255, 0, 0, 0),
                               fontSize: 15,
                               fontFamily: 'OpenSans',
@@ -181,8 +206,10 @@ class _myaccountState extends State<myaccount> {
                             decoration: BoxDecoration(
                               border: Border.all(color: Colors.black, width: 2),
                             ),
-                            child: const Text("DD/MM/YYYY",
-                                style: TextStyle(fontSize: 18)),
+                            child:Text(
+                              studentDetails?['enrollment_date'] ?? '',
+                              style: TextStyle(fontSize: 18),
+                            ),
                           ),
                           const SizedBox(
                             height: 5,
@@ -194,8 +221,9 @@ class _myaccountState extends State<myaccount> {
                           ElevatedButton(
                             onPressed: null,
                             style: ButtonStyle(
-                              backgroundColor: MaterialStateProperty.all<Color>(
-                                  Colors.black),
+                              backgroundColor:
+                                  MaterialStateProperty.all<Color>(
+                                      Colors.black),
                               fixedSize: MaterialStateProperty.all<Size>(
                                   const Size(150, 40)),
                             ),
@@ -212,23 +240,17 @@ class _myaccountState extends State<myaccount> {
                           const SizedBox(
                             height: 20,
                           ),
-                        ]),
+                        ],
                       ),
-
-                      //container
-                    ] //children
-
-                    ) //COLUMN
-
-                ) //CONTAINER
-          ] //CHILD
-              ) //COLUMN
-
-          ), //SINGLESCROLLVIEW
-      bottomNavigationBar: LMSBottomNavBar(), // NGLESCROLLVIEW
-      drawer: sideNav(), //yes
-    ); //yes
+                    ),
+                ],
+              ),
+            ),
+          ],
+        ),
+      ),
+      bottomNavigationBar: LMSBottomNavBar(),
+      drawer: sideNav(),
+    );
   }
 }
-  
-//   

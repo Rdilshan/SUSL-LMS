@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-
+import '../shared_data.dart';
 import 'homepage.dart';
-import 'package:flutter_application_5/screen/homepage.dart';
 
 class Sign extends StatefulWidget {
   const Sign({Key? key}) : super(key: key);
@@ -20,9 +19,9 @@ class _SignState extends State<Sign> {
   void login() async {
     final response = await http.get(Uri.parse(
         'https://susllms2.000webhostapp.com/student/logincheck.php?indexnum=${nameController.text}&password=${passwordController.text}'));
-    if (response.body == "1") {
+    if (response.body != "0") {
       print("Login successful");
-      // ignore: use_build_context_synchronously
+      SharedData.loginResponse = response.body;
       navigateToHomepage(context, const homepage());
     } else {
       print("Login failed");
@@ -54,10 +53,10 @@ class _SignState extends State<Sign> {
                 height: 10,
               ),
               if (errorMessage.isNotEmpty)
-                Text(
-                  errorMessage,
-                  style: TextStyle(color: Colors.red),
-                ),
+              Text(
+                errorMessage,
+                style: TextStyle(color: Colors.red),
+              ),
               SizedBox(
                 width: 300,
                 child: TextField(
@@ -101,8 +100,7 @@ class _SignState extends State<Sign> {
                   backgroundColor: MaterialStateProperty.all<Color>(
                     Color.fromARGB(255, 81, 24, 24),
                   ),
-                  fixedSize:
-                      MaterialStateProperty.all<Size>(const Size(200, 40)),
+                  fixedSize: MaterialStateProperty.all<Size>(const Size(200, 40)),
                 ),
                 child: const Text(
                   'LOGIN',
@@ -119,7 +117,9 @@ class _SignState extends State<Sign> {
               const Text(
                 'SOME COURSES MAY ALLOW GUEST ACCESS',
                 style: TextStyle(
-                    color: Color.fromARGB(255, 0, 0, 0), fontSize: 15),
+                  color: Color.fromARGB(255, 0, 0, 0),
+                  fontSize: 15
+                ),
               ),
               const SizedBox(
                 height: 10,
@@ -130,8 +130,7 @@ class _SignState extends State<Sign> {
                   backgroundColor: MaterialStateProperty.all<Color>(
                     Color.fromARGB(255, 81, 24, 24),
                   ),
-                  fixedSize:
-                      MaterialStateProperty.all<Size>(const Size(200, 40)),
+                  fixedSize: MaterialStateProperty.all<Size>(const Size(200, 40)),
                 ),
                 child: const Text(
                   'LOGIN AS A GUEST',
@@ -150,9 +149,11 @@ class _SignState extends State<Sign> {
   }
 }
 
-navigateToHomepage(BuildContext context, Widget homepageWidget) {
+
+void navigateToHomepage(BuildContext context, Widget homepageWidget) {
   Navigator.push(
     context,
     MaterialPageRoute(builder: (context) => homepageWidget),
   );
 }
+

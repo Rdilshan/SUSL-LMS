@@ -33,56 +33,41 @@ class subjectContainer extends StatelessWidget {
                 width: 118,
                 height: 100,
               ),
-              Column(
-                children: [
-                  SizedBox(
-                    height: 10,
+              Column(children: [
+                SizedBox(height: 10,),
+                Container(
+                  padding: EdgeInsets.only(top: 10.0, left: 10.0),
+                  child: Text(
+                    subName,
+                    style: Theme.of(context).textTheme.headline3?.copyWith(color: Colors.white,fontWeight: FontWeight.w700),
                   ),
-                  Container(
-                    padding: EdgeInsets.only(top: 10.0, left: 10.0),
-                    child: Text(
-                      subName,
-                      style: Theme.of(context).textTheme.headline3?.copyWith(
-                          color: Colors.white, fontWeight: FontWeight.w700),
+                ),
+              ],),
+              Row(children: [
+                SizedBox(
+                  width: 77.0,
+                  height: 40,
+                  child: const DecoratedBox(
+                    decoration: const BoxDecoration(
+                        color: Colors.transparent
                     ),
                   ),
-                ],
-              ),
-              Row(
-                children: [
-                  SizedBox(
-                    width: 77.0,
-                    height: 40,
-                    child: const DecoratedBox(
-                      decoration:
-                          const BoxDecoration(color: Colors.transparent),
-                    ),
-                  ),
-                  SizedBox(
-                    width: 35.0,
-                    height: 40,
-                    child: IconButton(
-                      padding: new EdgeInsets.all(0),
-                      onPressed: null,
-                      icon: Icon(
-                        Icons.star_border,
-                        color: Colors.white,
-                        size: 20,
-                      ),
-                    ),
-                  ),
-                ],
-              )
+                ),
+                SizedBox(
+                  width: 35.0,
+                  height: 40,
+                  child: IconButton(padding: new EdgeInsets.all(0),onPressed: null, icon: Icon(Icons.star_border,color: Colors.white,size: 20,),),
+                ),
+              ],)
             ],
           ),
           SizedBox(
             height: 12,
           ),
-          Text(subCode,
-              style: Theme.of(context)
-                  .textTheme
-                  .headline2
-                  ?.copyWith(color: Colors.white)),
+          Text(
+            subCode,
+            style: Theme.of(context).textTheme.headline2?.copyWith(color: Colors.white)
+          ),
         ],
       ),
     );
