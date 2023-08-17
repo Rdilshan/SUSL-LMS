@@ -1,5 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_application_5/notifications/notifications.dart';
+import 'package:flutter_application_5/screen/homepage.dart';
 
 import '../theme/palette.dart';
 
@@ -35,19 +37,12 @@ class _LMSBottomNavBarState extends State<LMSBottomNavBar> {
             IconBottomBar(
                 icon: Icons.home_outlined,
                 selected: _selectedIndex == 0,
-                onPressed: () {
-                  setState(() {
-                    _selectedIndex = 0;
-                  });
-                }),
+                onPressed: () => navigateToHomepage(context, homepage())),
             IconBottomBar(
                 icon: Icons.notifications_none_outlined,
                 selected: _selectedIndex == 1,
-                onPressed: () {
-                  setState(() {
-                    _selectedIndex = 1;
-                  });
-                }),
+                onPressed: () =>
+                    navigateToNotifications(context, notifications())),
             IconBottomBar(
                 icon: Icons.message_outlined,
                 selected: _selectedIndex == 2,
@@ -88,4 +83,18 @@ class IconBottomBar extends StatelessWidget {
       ),
     );
   }
+}
+
+navigateToHomepage(BuildContext context, Widget homepageWidget) {
+  Navigator.push(
+    context,
+    MaterialPageRoute(builder: (context) => homepageWidget),
+  );
+}
+
+navigateToNotifications(BuildContext context, Widget notificationsWidget) {
+  Navigator.push(
+    context,
+    MaterialPageRoute(builder: (context) => notifications()),
+  );
 }

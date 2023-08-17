@@ -1,15 +1,40 @@
 import 'package:flutter/material.dart';
-
+import 'package:http/http.dart' as http;
+import '../shared_data.dart';
 import 'homepage.dart';
 
 class Sign extends StatefulWidget {
-  const Sign({super.key});
+  const Sign({Key? key}) : super(key: key);
 
   @override
   State<Sign> createState() => _SignState();
 }
 
 class _SignState extends State<Sign> {
+  final nameController = TextEditingController();
+  final passwordController = TextEditingController();
+
+  String errorMessage = '';
+
+  void login() async {
+    final response = await http.get(Uri.parse(
+        'https://susllms2.000webhostapp.com/student/logincheck.php?indexnum=${nameController.text}&password=${passwordController.text}'));
+    if (response.body != "0") {
+      print("Login successful");
+      SharedData.loginResponse = response.body;
+      navigateToHomepage(context, const homepage());
+    } else {
+      print("Login failed");
+      setState(() {
+        errorMessage = "Incorrect username or password";
+      });
+    }
+  }
+
+  void loginAsGuest() {
+    // Handle guest login here
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -27,9 +52,15 @@ class _SignState extends State<Sign> {
               const SizedBox(
                 height: 10,
               ),
-              const SizedBox(
+              if (errorMessage.isNotEmpty)
+              Text(
+                errorMessage,
+                style: TextStyle(color: Colors.red),
+              ),
+              SizedBox(
                 width: 300,
                 child: TextField(
+                  controller: nameController,
                   decoration: InputDecoration(
                     hintText: 'USERNAME',
                     border: OutlineInputBorder(),
@@ -39,10 +70,11 @@ class _SignState extends State<Sign> {
               const SizedBox(
                 height: 10,
               ),
-              const SizedBox(
+              SizedBox(
                 width: 300,
                 child: TextField(
                   obscureText: true,
+                  controller: passwordController,
                   decoration: InputDecoration(
                     hintText: 'PASSWORD',
                     border: OutlineInputBorder(),
@@ -57,26 +89,24 @@ class _SignState extends State<Sign> {
                 style: TextStyle(
                   color: Color.fromARGB(255, 0, 0, 0),
                   fontSize: 15,
-                  fontFamily: 'OpenSans',
                 ),
               ),
               const SizedBox(
                 height: 10,
               ),
               ElevatedButton(
-                onPressed: () => navigateToHomepage(context, const homepage()),
+                onPressed: login,
                 style: ButtonStyle(
                   backgroundColor: MaterialStateProperty.all<Color>(
-                      Color.fromARGB(255, 81, 24, 24)),
-                  fixedSize:
-                      MaterialStateProperty.all<Size>(const Size(200, 40)),
+                    Color.fromARGB(255, 81, 24, 24),
+                  ),
+                  fixedSize: MaterialStateProperty.all<Size>(const Size(200, 40)),
                 ),
                 child: const Text(
                   'LOGIN',
                   style: TextStyle(
                     color: Color.fromARGB(255, 255, 255, 255),
                     fontSize: 18,
-                    fontFamily: 'OpenSans',
                     fontWeight: FontWeight.bold,
                   ),
                 ),
@@ -88,27 +118,25 @@ class _SignState extends State<Sign> {
                 'SOME COURSES MAY ALLOW GUEST ACCESS',
                 style: TextStyle(
                   color: Color.fromARGB(255, 0, 0, 0),
-                  fontSize: 15,
-                  fontFamily: 'OpenSans',
+                  fontSize: 15
                 ),
               ),
               const SizedBox(
                 height: 10,
               ),
               ElevatedButton(
-                onPressed: null,
+                onPressed: loginAsGuest,
                 style: ButtonStyle(
                   backgroundColor: MaterialStateProperty.all<Color>(
-                      Color.fromARGB(255, 81, 24, 24)),
-                  fixedSize:
-                      MaterialStateProperty.all<Size>(const Size(200, 40)),
+                    Color.fromARGB(255, 81, 24, 24),
+                  ),
+                  fixedSize: MaterialStateProperty.all<Size>(const Size(200, 40)),
                 ),
                 child: const Text(
                   'LOGIN AS A GUEST',
                   style: TextStyle(
                     color: Color.fromARGB(255, 255, 255, 255),
                     fontSize: 18,
-                    fontFamily: 'OpenSans',
                     fontWeight: FontWeight.bold,
                   ),
                 ),
@@ -121,9 +149,11 @@ class _SignState extends State<Sign> {
   }
 }
 
+
 void navigateToHomepage(BuildContext context, Widget homepageWidget) {
   Navigator.push(
     context,
     MaterialPageRoute(builder: (context) => homepageWidget),
   );
 }
+
