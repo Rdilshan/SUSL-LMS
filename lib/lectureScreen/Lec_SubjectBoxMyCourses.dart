@@ -2,29 +2,54 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_application_5/Src/theme/palette.dart';
+import 'package:flutter_application_5/lectureScreen/Lecture_Subject.dart';
 import 'package:flutter_application_5/screen/CourseDetails.dart';
 import 'package:http/http.dart' as http;
+import 'package:shared_preferences/shared_preferences.dart';
 
-class subGrid extends StatefulWidget {
-  const subGrid({Key? key}) : super(key: key);
+class Lec_subGrid extends StatefulWidget {
+  const Lec_subGrid({Key? key}) : super(key: key);
 
   @override
-  State<subGrid> createState() => _subGridState();
+  State<Lec_subGrid> createState() => _Lec_subGridState();
 }
 
-class _subGridState extends State<subGrid> {
+class _Lec_subGridState extends State<Lec_subGrid> {
   List<Map<String, dynamic>> gridMap = [];
 
   @override
   void initState() {
     super.initState();
+    // _printSavedData();
     fetchSubjects();
   }
 
-  Future<void> fetchSubjects() async {
-    final url =
-        Uri.parse('https://susllms2.000webhostapp.com/student/getsubject.php');
+  // void _printSavedData() async {
+  //   SharedPreferences prefs = await SharedPreferences.getInstance();
 
+  //   var myData = prefs.getString('loginResponse')!;
+  //   // ignore: unnecessary_null_comparison
+  //   if (myData != null) {
+  //     print('Stored data: $myData');
+  //   } else {
+  //     print('No data found.');
+  //   }
+  // }
+
+  Future<void> fetchSubjects() async {
+  SharedPreferences prefs = await SharedPreferences.getInstance();
+
+  var myData = prefs.getString('loginResponselecture');
+  if (myData != null) {
+    myData = myData.trim(); // Remove leading/trailing whitespace
+    print('Stored data: $myData');
+  } else {
+    print('No data found.');
+  }
+
+    final url = Uri.parse(
+        'https://susllms2.000webhostapp.com/lecuture/lecturesubjectget.php?id=$myData');
+print(url);
     try {
       final response = await http.get(url);
 
@@ -32,7 +57,7 @@ class _subGridState extends State<subGrid> {
         final jsonData = jsonDecode(response.body) as List<dynamic>;
         setState(() {
           gridMap = jsonData.cast<Map<String, dynamic>>();
-          
+          print('Data from API response: $gridMap');
         });
       } else {
         print('Request failed with status: ${response.statusCode}');
@@ -93,25 +118,26 @@ class _subGridState extends State<subGrid> {
                 itemCount: itemCount,
                 itemBuilder: (_, index) {
                   final subName = gridMap.elementAt(index)['name'] as String?;
-                  final subCode = gridMap.elementAt(index)['courseID'] as String?;
+                  final subCode =
+                      gridMap.elementAt(index)['courseID'] as String?;
 
                   return InkWell(
                     onTap: () {
-                        print("Container clicked at index $index");
-                        
-                       String subjectCode = subCode ?? '';
-                       String subjectTitle = subName ?? '';
+                      print("Container clicked at index $index");
 
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => CourseDetails(
-                              subjectCode: subjectCode,
-                              subjectTitle: subjectTitle,
-                            ),
+                      String subjectCode = subCode ?? '';
+                      String subjectTitle = subName ?? '';
+
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => lectureSubject(
+                            subjectCode: subjectCode,
+                            subjectTitle: subjectTitle,
                           ),
-                        );
-                      },
+                        ),
+                      );
+                    },
                     child: Container(
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.all(Radius.circular(15)),
@@ -171,8 +197,7 @@ class _subGridState extends State<subGrid> {
                                           style: Theme.of(context)
                                               .textTheme
                                               .headline3
-                                              ?.copyWith(
-                                                  color: Colors.white),
+                                              ?.copyWith(color: Colors.white),
                                         ),
                                       ),
                                     ),
@@ -207,6 +232,6 @@ class _subGridState extends State<subGrid> {
 
 void main() {
   runApp(MaterialApp(
-    home: subGrid(),
+    home: Lec_subGrid(),
   ));
 }

@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_5/Src/widgets/sideNav.dart';
 import 'package:flutter_application_5/Src/widgets/bottomNavBar.dart';
+import 'package:flutter_application_5/screen/CourseDetails.dart';
 import 'package:flutter_application_5/screen/MyCourses.dart';
 import 'package:flutter_application_5/submit_assignment/assignment.dart';
 import 'package:flutter_application_5/Src/theme/palette.dart';
 import 'package:flutter_application_5/myaccount/myaccount.dart';
 import 'package:flutter_application_5/Src/widgets/subjectContainer.dart';
-
+// import 'package:flutter_application_5/CourseDetails.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 
@@ -114,8 +115,10 @@ class _homepageState extends State<homepage> {
 
       if (response.statusCode == 200) {
         final jsonData = jsonDecode(response.body) as List<dynamic>;
+
         setState(() {
           subjects = jsonData.map((item) => Subject.fromJson(item)).toList();
+          // List<Map<String, dynamic>> courses = List<Map<String, dynamic>>.from(json.decode(jsonData as String));
         });
       } else {
         print('Request failed with status: ${response.statusCode}');
@@ -258,8 +261,22 @@ class _homepageState extends State<homepage> {
                             ),
                             itemBuilder: (context, index) => InkWell(
                               onTap: () {
-                                print("Container clicked");
+                                print("Container clicked at index $index");
+                                
+                                final subjectCode = subjects[index].subCode;
+                                final subjectTitle = subjects[index].subName;
+
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => CourseDetails(
+                                      subjectCode: subjectCode,
+                                      subjectTitle: subjectTitle,
+                                    ),
+                                  ),
+                                );
                               },
+
                               child: subjectContainer(
                                 subName: subjects[index].subName,
                                 subCode: subjects[index].subCode,
@@ -282,7 +299,20 @@ class _homepageState extends State<homepage> {
                             ),
                             itemBuilder: (context, index) => InkWell(
                               onTap: () {
-                                print("Container clicked");
+                                print("Container clicked at index $index");
+                                
+                                final subjectCode = subjects[index].subCode;
+                                final subjectTitle = subjects[index].subName;
+
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => CourseDetails(
+                                      subjectCode: subjectCode,
+                                      subjectTitle: subjectTitle,
+                                    ),
+                                  ),
+                                );
                               },
                               child: subjectContainer(
                                 subName: subjects[index].subName,

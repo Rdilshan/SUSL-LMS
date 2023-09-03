@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_5/Src/theme/palette.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import '../../screen/welcome.dart';
 
 class sideNav extends StatefulWidget {
   @override
@@ -9,6 +11,16 @@ class sideNav extends StatefulWidget {
 
 class _sideNavState extends State<sideNav> {
   var currentPage = DrawerSections.home;
+
+void logout() async {
+  SharedPreferences prefs = await SharedPreferences.getInstance();
+  await prefs.remove('loginResponse');
+  await prefs.remove('loginResponselecture');
+  Navigator.pushReplacement(
+    context,
+    MaterialPageRoute(builder: (context) => Welcome()),
+  );
+}
 
   @override
   Widget build(BuildContext context) {
@@ -78,6 +90,8 @@ class _sideNavState extends State<sideNav> {
               currentPage = DrawerSections.setting;
             } else if (id == 5) {
               currentPage = DrawerSections.logout;
+              logout();
+              
             }
           });
         },
@@ -107,6 +121,8 @@ class _sideNavState extends State<sideNav> {
     );
   }
 }
+
+
 
 enum DrawerSections {
   home,

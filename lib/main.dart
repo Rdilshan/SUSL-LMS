@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'screen/splash.dart';
-
 import 'Src/theme/theme.dart';
 
-void main() {
+
+void main(){
   runApp(const MyApp());
 }
 

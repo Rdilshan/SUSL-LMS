@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_5/lectureScreen/N_Lec_MyCourses.dart';
 import 'package:http/http.dart' as http;
 import '../shared_data.dart';
-import 'homepage.dart';
+// import 'homepage.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-
-class Sign extends StatefulWidget {
-  const Sign({Key? key}) : super(key: key);
+class Lecture_Sign extends StatefulWidget {
+  const Lecture_Sign({Key? key}) : super(key: key);
 
   @override
-  State<Sign> createState() => _SignState();
+  State<Lecture_Sign> createState() => _Lecture_SignState();
 }
 
-class _SignState extends State<Sign> {
+class _Lecture_SignState extends State<Lecture_Sign> {
   final nameController = TextEditingController();
   final passwordController = TextEditingController();
 
@@ -20,15 +20,14 @@ class _SignState extends State<Sign> {
 
   void login() async {
     final response = await http.get(Uri.parse(
-        'https://susllms2.000webhostapp.com/student/logincheck.php?indexnum=${nameController.text}&password=${passwordController.text}'));
+        'https://susllms2.000webhostapp.com/lecuture/loginchecklecture.php?indexnum=${nameController.text}&password=${passwordController.text}'));
     if (response.body != "0") {
       print("Login successful");
-      SharedData.loginResponse = response.body;
-      // Save loginResponse using SharedPreferences
-      SharedPreferences prefs = await SharedPreferences.getInstance();
-      await prefs.setString('loginResponse', response.body);
+      SharedData.loginResponselecture = response.body;
 
-      navigateToHomepage(context, const homepage());
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+      await prefs.setString('loginResponselecture', response.body);
+      navigateToHomepage(context, const Lec_MyCourses());
     } else {
       print("Login failed");
       setState(() {
@@ -40,27 +39,23 @@ class _SignState extends State<Sign> {
   void loginAsGuest() {
     // Handle guest login here
   }
-@override
-void initState() {
-  super.initState();
-  print(SharedData.loginResponse);
-  _checkLoginResponse();
-}
-
-void _checkLoginResponse() async {
-  SharedPreferences prefs = await SharedPreferences.getInstance();
-  String? loginResponse = prefs.getString('loginResponse');
-  
-  if (loginResponse != null && loginResponse.isNotEmpty) {
-    SharedData.loginResponse = loginResponse;
-    print("Go to homepage");
-    navigateToHomepage(context, const homepage());
+  @override
+  void initState() {
+    super.initState();
+    print(SharedData.loginResponse);
+    _checkLoginResponse();
   }
-}
 
+  void _checkLoginResponse() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    String? loginResponse = prefs.getString('loginResponse');
 
-
-
+    if (loginResponse != null && loginResponse.isNotEmpty) {
+      SharedData.loginResponse = loginResponse;
+      print("Go to homepage");
+      navigateToHomepage(context, const Lec_MyCourses());
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -80,10 +75,10 @@ void _checkLoginResponse() async {
                 height: 10,
               ),
               if (errorMessage.isNotEmpty)
-              Text(
-                errorMessage,
-                style: TextStyle(color: Colors.red),
-              ),
+                Text(
+                  errorMessage,
+                  style: TextStyle(color: Colors.red),
+                ),
               SizedBox(
                 width: 300,
                 child: TextField(
@@ -127,7 +122,8 @@ void _checkLoginResponse() async {
                   backgroundColor: MaterialStateProperty.all<Color>(
                     Color.fromARGB(255, 81, 24, 24),
                   ),
-                  fixedSize: MaterialStateProperty.all<Size>(const Size(200, 40)),
+                  fixedSize:
+                      MaterialStateProperty.all<Size>(const Size(200, 40)),
                 ),
                 child: const Text(
                   'LOGIN',
@@ -141,33 +137,6 @@ void _checkLoginResponse() async {
               const SizedBox(
                 height: 10,
               ),
-              const Text(
-                'SOME COURSES MAY ALLOW GUEST ACCESS',
-                style: TextStyle(
-                  color: Color.fromARGB(255, 0, 0, 0),
-                  fontSize: 15
-                ),
-              ),
-              const SizedBox(
-                height: 10,
-              ),
-              ElevatedButton(
-                onPressed: loginAsGuest,
-                style: ButtonStyle(
-                  backgroundColor: MaterialStateProperty.all<Color>(
-                    Color.fromARGB(255, 81, 24, 24),
-                  ),
-                  fixedSize: MaterialStateProperty.all<Size>(const Size(200, 40)),
-                ),
-                child: const Text(
-                  'LOGIN AS A GUEST',
-                  style: TextStyle(
-                    color: Color.fromARGB(255, 255, 255, 255),
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-              ),
             ],
           ),
         ),
@@ -176,11 +145,9 @@ void _checkLoginResponse() async {
   }
 }
 
-
 void navigateToHomepage(BuildContext context, Widget homepageWidget) {
   Navigator.push(
     context,
     MaterialPageRoute(builder: (context) => homepageWidget),
   );
 }
-

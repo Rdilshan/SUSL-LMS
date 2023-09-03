@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_5/lectureScreen/sign.dart';
 
 import 'sign.dart';
 
@@ -52,7 +53,7 @@ class _WelcomeState extends State<Welcome> {
                 height: 5,
               ),
               ElevatedButton(
-                onPressed: () => navigateToSignup(context, const Sign()),
+                onPressed: () => navigateTolectureSignup(context, const Lecture_Sign()),
                 style: ButtonStyle(
                   backgroundColor: MaterialStateProperty.all<Color>(
                       Color.fromARGB(255, 81, 24, 24)),
@@ -78,6 +79,13 @@ class _WelcomeState extends State<Welcome> {
 }
 
 void navigateToSignup(BuildContext context, Widget signupWidget) {
+  Navigator.push(
+    context,
+    MaterialPageRoute(builder: (context) => signupWidget),
+  );
+}
+
+void navigateTolectureSignup(BuildContext context, Widget signupWidget) {
   Navigator.push(
     context,
     MaterialPageRoute(builder: (context) => signupWidget),
